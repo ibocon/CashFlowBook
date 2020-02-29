@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+src/main/resources/static/
+src/main/resources/templates/
+
+### Secret ###

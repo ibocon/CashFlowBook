@@ -1,0 +1,12 @@
+# Secret
+jasypt:
+  encryptor:
+    password: ${CashFlowBookSecret}
+    bean: jasyptEncryptor
+
+# PostgresSQL
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/CashFlowBook
+    username: postgres
+    password: ENC(WywYnHdKMc9rUB3eYXEGAW8qkP/80vBA)
