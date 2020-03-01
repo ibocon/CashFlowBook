@@ -10,6 +10,7 @@ spring:
     url: ${URL}
     username: postgres
     password: ENC(WywYnHdKMc9rUB3eYXEGAW8qkP/80vBA)
+    driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
