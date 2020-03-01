@@ -4,13 +4,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.release
-    image: ibocon/cashflowbook:latest
+    image: ibocon/cashflowbook
     container_name: cashflowbook
     network_mode: bridge
     ports:
-      - 8080:8080
+      - 80:80
     environment:
-      - URL=jdbc:postgresql://db:5432/CashFlowBook
+      - URL=jdbc:postgresql://postgres:5432/CashFlowBook
       - SECRET=${SECRET}
     restart: unless-stopped
     depends_on:

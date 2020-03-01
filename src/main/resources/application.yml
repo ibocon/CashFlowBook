@@ -8,7 +8,6 @@ jasypt:
 spring:
   datasource:
     url: ${URL}
-    driver-class-name: org.postgresql.Driver
     username: postgres
     password: ENC(WywYnHdKMc9rUB3eYXEGAW8qkP/80vBA)
   jpa:
@@ -17,3 +16,4 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
+    open-in-view: false

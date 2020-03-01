@@ -7,7 +7,6 @@ plugins {
 
 group = 'com.ibocon'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
@@ -19,7 +18,7 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 
 	// https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter
-	compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.2'
+	implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.2'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

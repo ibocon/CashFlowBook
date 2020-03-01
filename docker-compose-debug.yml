@@ -18,7 +18,7 @@ services:
       - postgres
     links:
       - postgres
-    command: java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Djava.security.egd=file:/dev/./urandom -jar /app.jar
   postgres:
     image: postgres:latest
     network_mode: bridge
