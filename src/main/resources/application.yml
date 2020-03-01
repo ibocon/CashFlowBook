@@ -1,12 +1,19 @@
 # Secret
 jasypt:
   encryptor:
-    password: ${CashFlowBookSecret}
+    password: ${SECRET}
     bean: jasyptEncryptor
 
 # PostgresSQL
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/CashFlowBook
+    url: ${URL}
+    driver-class-name: org.postgresql.Driver
     username: postgres
     password: ENC(WywYnHdKMc9rUB3eYXEGAW8qkP/80vBA)
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
