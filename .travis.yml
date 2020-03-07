@@ -17,3 +17,4 @@ after_success:
   # docker hub 에 업로드
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push $DOCKER_USERNAME/cashflowbook
+  - rm -f /home/travis/.docker/config.json

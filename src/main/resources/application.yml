@@ -4,8 +4,10 @@ jasypt:
     password: ${SECRET}
     bean: jasyptEncryptor
 
-# PostgresSQL
 spring:
+  data:
+    rest:
+      base-path : /api
   datasource:
     url: ${URL}
     username: postgres
