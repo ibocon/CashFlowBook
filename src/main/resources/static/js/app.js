@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const client = require('./client');
+import React from 'react';
+import { render as _render } from 'react-dom';
+const superagent = require('superagent');
 
 class App extends React.Component {
 
@@ -12,8 +12,9 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		client({method: 'GET', path: '/api/customers'}).done(response => {
-			this.setState({customers: response.entity._embedded.customers});
+		// this.setState({customers: response.entity._embedded.customers});
+		superagent.get('/api/customers').set('Accept', 'application/hal+json').then( response => {
+			this.setState({customers: response.body._embedded.customers});
 		});
 	}
 
@@ -23,7 +24,6 @@ class App extends React.Component {
 		)
 	}
 }
-
 class CustomerList extends React.Component{
 	render() {
 		const customers = this.props.customers.map(customer =>
@@ -33,7 +33,6 @@ class CustomerList extends React.Component{
 			<table>
 				<tbody>
 					<tr>
-						<th>ID</th>
 						<th>Name</th>
 					</tr>
 					{customers}
@@ -42,7 +41,6 @@ class CustomerList extends React.Component{
 		)
 	}
 }
-
 class Customer extends React.Component{
 	render() {
 		return (
@@ -52,9 +50,7 @@ class Customer extends React.Component{
 		)
 	}
 }
-
-ReactDOM.render(
+_render(
 	<App />,
 	document.getElementById('react')
 )
-
