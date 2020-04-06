@@ -1,0 +1,66 @@
+@charset "utf-8"
+
+#sidebar 
+    min-width: 250px
+    max-width: 250px
+    min-height: 100vh
+
+    background: #7386D5
+    color: #fff
+    transition: all 0.3s
+
+    &.active 
+        margin-left: -250px
+
+    a[data-toggle="collapse"] 
+        position: relative
+
+
+    .dropdown-toggle::after 
+        display: block
+        position: absolute
+        top: 50%
+        right: 20px
+        transform: translateY(-50%)
+
+    .sidebar-header 
+        padding: 20px
+        background: #6d7fcc
+
+    ul00000000000000
+        &.components 
+            padding: 20px 0
+            border-bottom: 1px solid #47748b
+
+        p
+            color: #fff
+            padding: 10px
+
+        ul 
+            a 
+                font-size: 0.9em !important
+                padding-left: 30px !important
+                background: #6d7fcc
+
+        li 
+            a 
+                padding: 10px
+                font-size: 1.1em
+                display: block
+
+                &:hover 
+                    color: #7386D5
+                    background: #fff
+
+            &.active > a, a[aria-expanded="true"] 
+                color: #fff
+                background: #6d7fcc
+
+
+@media (max-width: 768px) 
+    #sidebar 
+        margin-left: -250px
+    
+    #sidebar.active 
+        margin-left: 0
+    
