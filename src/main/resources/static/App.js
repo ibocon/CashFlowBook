@@ -4,7 +4,7 @@
 import React from 'react';
 import { render as _render } from 'react-dom';
 import Sidebar from './js/Sidebar';
-import Content from './js/Content';
+import Main from './js/Main';
 import './style.sass';
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
 		return (
 			<div class="wrapper">
 				<Sidebar></Sidebar>
-				<Content></Content>
+				<Main></Main>
 			</div>
 		)
 	}

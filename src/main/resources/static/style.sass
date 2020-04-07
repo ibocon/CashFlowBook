@@ -1,18 +1,18 @@
 @charset "utf-8"
-@import "./sass/sidebar.sass"
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
+@import "./sass/colors"
+
+@import "./sass/sidebar"
+@import "./sass/navbar"
+@import "./sass/main"
 
 body 
-    font-family: 'Poppins', sans-serif
-    background: #fafafa
-
+    background: $color-background
 
 p 
-    font-family: 'Poppins', sans-serif
     font-size: 1.1em
     font-weight: 300
     line-height: 1.7em
-    color: #999
+    color: $color-on-background
 
 a, a:hover, a:focus 
     color: inherit
@@ -25,6 +25,8 @@ a, a:hover, a:focus
     width: 100%
     align-items: stretch
 
+.fas
+    color: #ffffff
 
 
 

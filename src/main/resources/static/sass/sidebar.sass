@@ -1,20 +1,27 @@
 @charset "utf-8"
+@import "./breakpoints"
+@import "./colors"
 
 #sidebar 
     min-width: 250px
     max-width: 250px
     min-height: 100vh
 
-    background: #7386D5
-    color: #fff
+    background-color: $color-surface
+    color: $color-on-surface
     transition: all 0.3s
+
+    @include md 
+        margin-left: -250px
 
     &.active 
         margin-left: -250px
 
+        @include md
+            margin-left: 0
+
     a[data-toggle="collapse"] 
         position: relative
-
 
     .dropdown-toggle::after 
         display: block
@@ -24,43 +31,32 @@
         transform: translateY(-50%)
 
     .sidebar-header 
+        padding: .375rem 1.5rem
+        font-size: .75rem
+        font-weight: 500
+        text-transform: none
+
+    .sidebar-brand
+        display: block
         padding: 20px
-        background: #6d7fcc
+        color: $color-on-primary
 
-    ul00000000000000
-        &.components 
-            padding: 20px 0
-            border-bottom: 1px solid #47748b
+    .sidebar-customer
+        padding: 1.5rem 1rem 1rem
+        text-align: center
+        img
+            width: 64px
+            height: 64px
 
-        p
-            color: #fff
-            padding: 10px
-
+    ul
         ul 
             a 
                 font-size: 0.9em !important
-                padding-left: 30px !important
-                background: #6d7fcc
+                padding-left: 55px !important
 
         li 
             a 
                 padding: 10px
                 font-size: 1.1em
                 display: block
-
-                &:hover 
-                    color: #7386D5
-                    background: #fff
-
-            &.active > a, a[aria-expanded="true"] 
-                color: #fff
-                background: #6d7fcc
-
-
-@media (max-width: 768px) 
-    #sidebar 
-        margin-left: -250px
-    
-    #sidebar.active 
-        margin-left: 0
-    
+            
