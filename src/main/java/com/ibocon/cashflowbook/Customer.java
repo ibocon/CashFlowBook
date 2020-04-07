@@ -11,7 +11,7 @@ public @Data class Customer {
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
     private String name;
 
-    private Customer() {}
+    private Customer() { }
 
     public Customer(String name) {
         this.name = name;

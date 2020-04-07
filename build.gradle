@@ -18,6 +18,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 
+	// Spring DevTools
+	compileOnly "org.springframework.boot:spring-boot-devtools"
+
 	// Postgresql : https://www.postgresql.org/docs/12/index.html
 	runtimeOnly 'org.postgresql:postgresql'
 
@@ -40,6 +43,6 @@ test {
 	useJUnitPlatform()
 }
 
-bootJar { }
+// bootJar { }
 
 
