@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-class SidebarCustomer extends React.Component {
+class SidebarCustomer extends Component {
     constructor(props) {
 		super(props);
     }

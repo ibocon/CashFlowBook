@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-class SidebarNavigation extends React.Component {
+class SidebarNavigation extends Component {
     constructor(props) {
 		super(props);
     }

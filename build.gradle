@@ -16,7 +16,15 @@ repositories {
 dependencies {
 	// Spring Boot : https://docs.spring.io/spring-framework/docs/current/javadoc-api/
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	// Spring Security : https://docs.spring.io/spring-security/site/docs/current/reference/html5/#getting
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
 
 	// Spring DevTools
 	compileOnly "org.springframework.boot:spring-boot-devtools"
@@ -34,9 +42,7 @@ dependencies {
 	// jasypt : https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter
 	implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.2'
 
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+
 }
 
 test {

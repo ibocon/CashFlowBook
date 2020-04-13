@@ -1,8 +1,8 @@
-import React from 'react';
-import SidebarCustomer from './SidebarCustomer';
-import SidebarNavigation from './SidebarNavigation';
+import React, { Component } from 'react'
+import SidebarCustomer from './SidebarCustomer'
+import SidebarNavigation from './SidebarNavigation'
 
-class Sidebar extends React.Component {
+class Sidebar extends Component {
     constructor(props) {
 		super(props);
     }

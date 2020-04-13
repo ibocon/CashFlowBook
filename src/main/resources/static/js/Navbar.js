@@ -1,11 +1,10 @@
-import React from 'react';
-import SidebarToggleButton from './SidebarToggleButton';
+import React, { Component } from 'react'
+import SidebarToggleButton from './SidebarToggleButton'
 
 
-class Navbar extends React.Component {
+class Navbar extends Component {
     constructor(props) {
         super(props);
-        
     }
 
     render() {

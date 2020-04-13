@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-class SidebarToggleButton extends React.Component {
+class SidebarToggleButton extends Component {
     constructor(props) {
         super(props);
-        
     }
 
     toggleSidebar() {

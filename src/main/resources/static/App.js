@@ -1,16 +1,21 @@
 'use strict';
 
 // React
-import React from 'react';
-import { render as _render } from 'react-dom';
-import Sidebar from './js/Sidebar';
-import Main from './js/Main';
-import './style.sass';
+import React, { Component } from 'react'
+import { render as _render } from 'react-dom'
+import Sidebar from './js/Sidebar'
+import Main from './js/Main'
+import SigninForm from './js/SigninForm'
 
-class App extends React.Component {
+import './style.sass'
+
+class App extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			isLogin: false
+		};
 	}
 
 	componentDidMount() {
@@ -18,12 +23,19 @@ class App extends React.Component {
 	}
 
 	render() {
-		return (
-			<div class="wrapper">
-				<Sidebar></Sidebar>
-				<Main></Main>
-			</div>
-		)
+		if(this.state.isLogin) {
+			return (
+				<div className="wrapper">
+					<Sidebar></Sidebar>
+					<Main></Main>
+				</div>
+			)
+		}
+		else {
+			return (
+				<SigninForm></SigninForm> 
+			)
+		}
 	}
 }
 
