@@ -1,17 +1,13 @@
-package com.ibocon.cashflowbook;
+package com.ibocon.ledger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CashflowbookApplication {
+public class LedgerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CashflowbookApplication.class, args);
+		SpringApplication.run(LedgerApplication.class, args);
 	}
 
 }
-
-
-
-

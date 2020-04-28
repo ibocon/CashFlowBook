@@ -1,10 +1,10 @@
-package com.ibocon.cashflowbook;
+package com.ibocon.ledger;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CashflowbookApplicationTests {
+class LedgerApplicationTests {
 
 	@Test
 	void contextLoads() {

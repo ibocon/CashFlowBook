@@ -1,9 +1,0 @@
-FROM adoptopenjdk:11-jre-hotspot
-MAINTAINER Yegun Kim <wlfka102@gmail.com>
-
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-
-EXPOSE 80
-
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar","/app.jar"]
