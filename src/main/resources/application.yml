@@ -1,0 +1,7 @@
+logging.level.root: WARN
+
+spring:
+    h2.console.enabled: true
+    datasource.url: jdbc:h2:mem:ledger;DB_CLOSE_ON_EXIT=FALSE
+    jpa.open-in-view: false
+    
