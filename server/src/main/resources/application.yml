@@ -5,4 +5,14 @@ spring:
     h2.console.enabled: true
     datasource.url: jdbc:h2:mem:ledger;DB_CLOSE_ON_EXIT=FALSE
     jpa.open-in-view: false
+
+    security:
+        oauth2.client.registration.google:
+            client-id: ENC(+bLv66PdqdHet39T3uIWyjRBC+8H9QyCV8es4UtDCe7SG8J74wmZI6z8IO29+sowQ6htogNsjFnJ4ZL9oYD5mKQxMZTHRhH7i4IPVmwHq18lajrUyUJEEg==)
+            client-secret: ENC(ChxWAioKf+bAKlW/SswkQTFGU8e3GipxWrd714I2qFRk32I0SPdViw==)
+
+jasypt.encryptor:
+    bean: jasyptEncryptor
+    password: ${SECRET}
     
+  

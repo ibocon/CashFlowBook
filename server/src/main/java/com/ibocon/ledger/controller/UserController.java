@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping(path="/api", produces="application/json")
+@RequestMapping(produces="application/json")
 public class UserController {
 
     private UserRepository userRepository;
