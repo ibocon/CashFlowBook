@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.sass';
+import '../sass/App.sass';
+import ShowUserList from '../containers/ShowUserList'
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello, World!</h1>
+      <ShowUserList />
     </div>
   );
 }
