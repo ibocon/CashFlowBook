@@ -1,8 +1,8 @@
 import React from 'react'
 
-const User = ({ id, name }) => (
+const User = ({ id, name, email }) => (
     <li>
-        {id} - {name}
+        {id} - {name} - {email}
     </li>
 )
 

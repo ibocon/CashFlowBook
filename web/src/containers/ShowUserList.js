@@ -8,9 +8,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onClick: e => {
-        e.preventDefault()
-        const users = [{"id":1,"name":"Aliko"},{"id":2,"name":"Bill"},{"id":3,"name":"Yegun"}]; //UserService.getUsers();
-        dispatch(getUsers(users))
+        e.preventDefault();
+        fetch("http://localhost:8081/users")
+        .then(
+            response => response.json(),
+            error => console.log(error)
+        )
+        .then(json => {
+            dispatch(getUsers(json))
+        })
     }  
 })
 

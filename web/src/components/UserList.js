@@ -6,7 +6,7 @@ const UserList = ({ users, onClick }) => (
         <button onClick={onClick}>GetUsers</button>
         <ul>
             {
-                users !== undefined && users.map(user => 
+                users !== undefined && users.length > 0 && users.map(user => 
                     <User  key={user.id} {...user} />
                 )
             }
