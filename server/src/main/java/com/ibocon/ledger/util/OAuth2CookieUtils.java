@@ -1,5 +1,8 @@
 package com.ibocon.ledger.util;
 
+import java.util.Optional;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,5 +37,15 @@ public class OAuth2CookieUtils extends CookieUtils {
     public static void deleteOauth2AuthRequestCookie(HttpServletRequest request, HttpServletResponse response) {
         deleteCookie(request, response, OAUTH2_AUTHORIZATION_REQUEST);
         deleteCookie(request, response, OAUTH2_REDIRECT_URI);
+    }
+
+    public static String getRedirectUrl(HttpServletRequest request) {
+        Optional<String> redirectUri = getCookie(request, OAUTH2_REDIRECT_URI).map(Cookie::getValue);
+
+        if(redirectUri.isPresent()){
+            return redirectUri.get();
+        } else {
+            return "/";
+        }
     }
 }

@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -44,13 +45,15 @@ public class User implements UserDetails, OAuth2User {
     final private String email;
 
     private String password;
-    private Map<String, Object> attributes;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     final private OAuth2Provider provider;
 
     private String imageUrl;
+
+    @Transient
+    private Map<String, Object> attributes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -35,18 +35,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
-
     @Autowired
     private JwtAuthenticationEntryPoint authenticationEntryPoint;
-
     @Autowired
     private MyOAuth2UserService myOauth2UserService;
-
     @Autowired
     private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
-
     @Autowired
     private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Autowired
+    private CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
@@ -72,7 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .oauth2Login()
                 .authorizationEndpoint()
                     .baseUri("/oauth2/authorize")
-                    .authorizationRequestRepository(cookieOAuth2AuthorizationRequestRepository())
+                    .authorizationRequestRepository(cookieOAuth2AuthorizationRequestRepository)
                 .and().redirectionEndpoint()
                     .baseUri("/oauth2/callback/*")
                 .and().userInfoEndpoint()
@@ -81,18 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .successHandler(oAuth2AuthenticationSuccessHandler)
                     .failureHandler(oAuth2AuthenticationFailureHandler)
         .and()
-            .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         ;
-    }
-
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter();
-    }
-
-    @Bean
-    public CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository() {
-        return new CookieOAuth2AuthorizationRequestRepository();
     }
 
     @Override
@@ -100,11 +94,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder
             .userDetailsService(myUserDetailsService)
             .passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
