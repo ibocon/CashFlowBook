@@ -4,7 +4,10 @@ logging.level.root: WARN
 spring:
     h2.console.enabled: true
     datasource.url: jdbc:h2:mem:ledger;DB_CLOSE_ON_EXIT=FALSE
-    jpa.open-in-view: false
+    jpa:
+        open-in-view: false
+        # 모델 변화에 맞춰 테이블 구조 변경
+        hibernate.ddl-auto: update
 
     security:
         oauth2.client.registration.google:
@@ -14,5 +17,10 @@ spring:
 jasypt.encryptor:
     bean: jasyptEncryptor
     password: ${SECRET}
+    
+ledger:
+    jwt:
+        secret: ${SECRET}
+        expire: 86400000 # 1 d = 86400000 ms
     
   

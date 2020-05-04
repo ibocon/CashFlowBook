@@ -1,7 +1,9 @@
 package com.ibocon.ledger.controller;
 
+import java.util.Optional;
+
 import com.ibocon.ledger.model.User;
-import com.ibocon.ledger.model.UserRepository;
+import com.ibocon.ledger.repository.UserRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,10 +32,15 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping(value="/user/{name}")
-    public ResponseEntity<?> getUserByName(@PathVariable String name) {
-        User user = userRepository.findByName(name);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @GetMapping(value="/user/{email}")
+    public ResponseEntity<?> getUserByName(@PathVariable String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isPresent()) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping(value="/user")
