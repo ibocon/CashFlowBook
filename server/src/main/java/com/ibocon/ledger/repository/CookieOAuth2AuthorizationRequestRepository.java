@@ -20,7 +20,8 @@ public class CookieOAuth2AuthorizationRequestRepository
 
     @Override
     public OAuth2AuthorizationRequest removeAuthorizationRequest(HttpServletRequest httpServletRequest) {
-        return loadAuthorizationRequest(null);
+        // return loadAuthorizationRequest(null);
+        return null;
     }
 
     @Override
