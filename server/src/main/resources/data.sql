@@ -1,13 +1,6 @@
-DROP TABLE IF EXISTS users;
+/* Hello, Database! */
  
--- CREATE TABLE users (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   name VARCHAR(250) NOT NULL,
---   email VARCHAR(320) NOT NULL,
---   UNIQUE (email)
--- );
- 
--- INSERT INTO users (name, email) VALUES
---   ('Aliko', 'a@naver.com'),
---   ('Bill', 'b@google.com'),
---   ('Yegun', 'c@daum.net');
+INSERT INTO "USERS" ("ID", "EMAIL", "PROVIDER") VALUES
+  ('1', 'a@naver.com', 'google'),
+  ('2', 'b@google.com', 'google'),
+  ('3', 'c@daum.net', 'facebook');
