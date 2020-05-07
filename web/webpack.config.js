@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: [ '@babel/polyfill', './src/index.js'],
   devtool: 'inline-source-map',
   cache: true,
   mode: 'development',
@@ -51,6 +51,11 @@ module.exports = {
                 loader: "html-loader"
               }
             ]
+        },
+        // css
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
         }
     ]
   },

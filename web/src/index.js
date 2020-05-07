@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './sass/index.sass'
-import App from './components/App'
+import './index.sass'
+import App from './app/App'
 import * as serviceWorker from './serviceWorker'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import rootReducer from './reducers'
+import rootReducer from './reducer'
 import thunkMiddleware from 'redux-thunk'
-
+import { BrowserRouter as Router } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(
     rootReducer,
@@ -16,9 +17,11 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <Router>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
