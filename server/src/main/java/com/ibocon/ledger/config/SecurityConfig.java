@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
-    @Autowired
-    private JwtAuthenticationEntryPoint authenticationEntryPoint;
+    // @Autowired
+    // private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Autowired
     private MyOAuth2UserService myOauth2UserService;
     @Autowired
@@ -47,29 +47,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
     private CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http
+    protected void configure(final HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
             .cors()
         .and()
             .csrf().disable()
             .formLogin().disable()
             .httpBasic().disable()
-            .headers().frameOptions().disable()
+            .headers().frameOptions().disable() //H2 Console 접속 시 필요
         .and()
             .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint)
+                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
         .and()
             .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
-                .antMatchers("/h2-console/*").permitAll()
+                .antMatchers("/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
         .and()
@@ -84,9 +91,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .successHandler(oAuth2AuthenticationSuccessHandler)
                     .failureHandler(oAuth2AuthenticationFailureHandler)
-        .and()
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         ;
+
+        httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
@@ -94,11 +101,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder
             .userDetailsService(myUserDetailsService)
             .passwordEncoder(passwordEncoder());
-    }
-
-    @Bean(BeanIds.AUTHENTICATION_MANAGER)
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
     }
 }
