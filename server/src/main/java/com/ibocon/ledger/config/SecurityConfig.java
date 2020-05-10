@@ -47,6 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
     private CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
+    @Autowired
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -69,15 +71,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .headers().frameOptions().disable() //H2 Console 접속 시 필요
         .and()
             .exceptionHandling()
-                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
         .and()
             .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll() //H2 Console 접속 시 필요
                 .anyRequest().authenticated()
         .and()
             .oauth2Login()

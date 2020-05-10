@@ -84,6 +84,7 @@ public class MyOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     private User updateUser(User user, OAuth2UserInfo oAuth2UserInfo) {
+        user.setName(oAuth2UserInfo.getName());
         user.setImageUrl(oAuth2UserInfo.getImageUrl());
         return userRepository.save(user);
     }

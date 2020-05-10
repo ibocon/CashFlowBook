@@ -2,6 +2,7 @@ package com.ibocon.ledger.security.oauth2;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
     @Value("${ledger.redirectUri}")
-    private String authorizedRedirectUri;
+    private List<String> authorizedRedirectUri;
 
     @Override
     public void onAuthenticationSuccess(
@@ -60,15 +61,16 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     }
 
     private Boolean validateRedirectUri(URI uri) {
-        URI authRedirectUri = URI.create(authorizedRedirectUri);
-
-        if(authRedirectUri.getHost().equalsIgnoreCase(uri.getHost())
-        && authRedirectUri.getPort() == uri.getPort()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return authorizedRedirectUri.stream().anyMatch(authorizedRedirectUri -> {
+            URI authRedirectUri = URI.create(authorizedRedirectUri);
+            if(authRedirectUri.getHost().equalsIgnoreCase(uri.getHost())
+            && authRedirectUri.getPort() == uri.getPort()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
     }
 
     private void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {

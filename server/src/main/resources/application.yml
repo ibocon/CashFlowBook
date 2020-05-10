@@ -30,6 +30,8 @@ ledger:
     jwt:
         secret: ${SECRET}
         expire: 86400000 # 1 d = 86400000 ms
-    redirectUri: http://localhost:8080/oauth2/redirect
+    redirectUri: >
+        http://localhost:8080/oauth2/redirect,
+        http://localhost:3000/oauth2/redirect
     
   

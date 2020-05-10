@@ -1,7 +1,9 @@
 import React from 'react'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import { UrlConstant } from '../constant'
+import { connect } from 'react-redux'
+import { withRouter } from "react-router"
 
 class Login extends React.Component {
 
@@ -16,20 +18,29 @@ class Login extends React.Component {
     }
 
     render() {
-        if(this.props.authenticated) {
-                return <Redirect to={{
-                    pathname: "/",
-                    state: {from: this.props.location }
-            }}/>
-        }
+        // const { user } = this.props
+        // if(user) {
+        //         return <Redirect to={{
+        //             pathname: "/profile",
+        //             state: {from: this.props.location }
+        //     }}/>
+        // }
 
         return (
             <div>
+                <h1>Login</h1>
                 <Button variant="primary" href={UrlConstant.GOOGLE_AUTH_URL}>Log in with Google</Button>
-                <Link to="/signup">Sign Up</Link>
             </div>
         )
     }
 }
 
-export default Login
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

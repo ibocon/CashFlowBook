@@ -18,7 +18,7 @@ class OAuth2RedirectHandler extends React.Component {
         if(token) {
             localStorage.setItem(UrlConstant.ACCESS_TOKEN, token);
             return <Redirect to={{
-                pathname: "/users",
+                pathname: "/profile",
                 state: { from: this.props.location }
             }}/>;
         } else {

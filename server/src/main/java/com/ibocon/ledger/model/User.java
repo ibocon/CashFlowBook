@@ -46,6 +46,8 @@ public class User implements UserDetails, OAuth2User {
     @NotNull
     final private String email;
 
+    private String name;
+
     @JsonIgnore
     private String password;
 
@@ -55,17 +57,17 @@ public class User implements UserDetails, OAuth2User {
 
     private String imageUrl;
 
+    @Override
+    public String getUsername() {
+        return name;
+    }
+
     @Transient
     private Map<String, Object> attributes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
     }
 
     @Override
@@ -86,10 +88,5 @@ public class User implements UserDetails, OAuth2User {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Override
-    public String getName() {
-        return email;
     }
 }
