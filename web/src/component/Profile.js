@@ -1,11 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from "react-router"
+import { withRouter, Redirect } from "react-router"
+import { isEmpty } from '../util';
 
 class Profile extends React.Component {
 
     render() {
         const { user } = this.props;
+
+        if(isEmpty(user)) {
+            return (            
+                <Redirect
+                    to={{
+                    pathname: '/login',
+                    state: { from: this.props.location }
+                    }}
+                />
+            )
+        }
+
         return (
             <div>
                 <h1>Profile</h1>

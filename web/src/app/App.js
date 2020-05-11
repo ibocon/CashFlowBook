@@ -10,6 +10,7 @@ import Login from '../component/Login'
 import Dashboard from '../component/Dashboard'
 import Profile from '../component/Profile'
 import { userAction } from '../action'
+import { UrlConstant } from '../constant'
 
 class App extends React.Component {
 
@@ -39,7 +40,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     loadCurrentUser: () => {
+      if(localStorage.getItem(UrlConstant.ACCESS_TOKEN)) {
         dispatch(userAction.getCurrentUserAsync());
+      } 
     }
 })
 

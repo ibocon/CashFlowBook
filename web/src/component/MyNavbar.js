@@ -4,11 +4,13 @@ import { withRouter } from "react-router"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
+import { userAction } from '../action'
+import { isEmpty } from '../util'
 
 class MyNavbar extends React.Component {
 
     render() {
-        const { user } = this.props;
+        const { user, logout } = this.props;
 
         return (    
             <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
@@ -16,13 +18,13 @@ class MyNavbar extends React.Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
+                        {!isEmpty(user) && <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>}
                         <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link as={NavLink} to="/signup">Sign Up</Nav.Link>
-                        <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
-                        {user && <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>}
+                        {isEmpty(user) && <Nav.Link as={NavLink} to="/signup">Sign Up</Nav.Link>}
+                        {isEmpty(user) && <Nav.Link as={NavLink} to="/login">Login</Nav.Link>}
+                        {!isEmpty(user) && <Nav.Link onClick={logout}>Logout</Nav.Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -34,7 +36,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    logout: e => {
+        e.preventDefault();
+        dispatch(userAction.logout());
+    }
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyNavbar))

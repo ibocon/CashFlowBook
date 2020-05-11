@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button'
 import { UrlConstant } from '../constant'
 import { connect } from 'react-redux'
 import { withRouter } from "react-router"
+import { isEmpty } from '../util'
+import { userAction } from '../action'
 
 class Login extends React.Component {
 
@@ -18,13 +20,15 @@ class Login extends React.Component {
     }
 
     render() {
-        // const { user } = this.props
-        // if(user) {
-        //         return <Redirect to={{
-        //             pathname: "/profile",
-        //             state: {from: this.props.location }
-        //     }}/>
-        // }
+        const { user } = this.props
+        if(!isEmpty(user)) {
+                return (
+                    <Redirect to={{
+                        pathname: "/profile",
+                        state: {from: this.props.location }
+                    }}/>
+                )
+        }
 
         return (
             <div>
@@ -40,7 +44,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

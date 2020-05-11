@@ -1,11 +1,14 @@
-import { ActionConstant } from '../constant'
+import { ActionConstant, UrlConstant } from '../constant'
 import { userService } from '../service'
 
 export const userAction = {
     // getUsersAsync,
-    getCurrentUserAsync
+    login,
+    logout,
+    getCurrentUserAsync,
 }
 
+// 샘플 코드
 // function getUsersAsync() {
 //     function getUsers(users) {return { type: ActionConstant.GET_USERS, users }}
 
@@ -14,6 +17,16 @@ export const userAction = {
 //         dispatch(getUsers(json));
 //     }
 // }
+
+function login() {
+    return {type: ActionConstant.LOGIN }
+}
+
+function logout() {
+    localStorage.removeItem(UrlConstant.ACCESS_TOKEN);
+    const user = {};
+    return {type: ActionConstant.LOGOUT, user }
+}
 
 function getCurrentUserAsync() {
     function getCurrentUser(user) {return {type: ActionConstant.GET_CURRENT_USER, user} }
