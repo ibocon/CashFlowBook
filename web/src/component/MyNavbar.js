@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
 import { userAction } from '../action'
 import { isEmpty } from '../util'
+import { UrlConstant } from '../constant'
 
 class MyNavbar extends React.Component {
 
@@ -18,13 +19,12 @@ class MyNavbar extends React.Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        {!isEmpty(user) && <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>}
-                        <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>
+                        {!isEmpty(user) && <Nav.Link as={NavLink} to="/profile">프로필</Nav.Link>}
+                        {!isEmpty(user) && <Nav.Link as={NavLink} to="/dashboard">대시보드</Nav.Link>}
                     </Nav>
                     <Nav>
-                        {isEmpty(user) && <Nav.Link as={NavLink} to="/signup">Sign Up</Nav.Link>}
-                        {isEmpty(user) && <Nav.Link as={NavLink} to="/login">Login</Nav.Link>}
-                        {!isEmpty(user) && <Nav.Link onClick={logout}>Logout</Nav.Link>}
+                        {isEmpty(user) && <Nav.Link href={UrlConstant.GOOGLE_AUTH_URL}>로그인</Nav.Link>}
+                        {!isEmpty(user) && <Nav.Link onClick={logout}>로그아웃</Nav.Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

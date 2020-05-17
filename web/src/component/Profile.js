@@ -12,7 +12,7 @@ class Profile extends React.Component {
             return (            
                 <Redirect
                     to={{
-                    pathname: '/login',
+                    pathname: '/',
                     state: { from: this.props.location }
                     }}
                 />
@@ -22,9 +22,10 @@ class Profile extends React.Component {
         return (
             <div>
                 <h1>Profile</h1>
-                { user.imageUrl && <img width="256" src={user.imageUrl} alt={user.name}/> }
-                <h1>{user.name}</h1>
-                <h1>{user.email}</h1>
+                <p>사용자 정보나 설정을 표시하는 페이지</p>
+                { user.imageUrl && <img width="128" src={user.imageUrl} alt={user.name}/> }
+                <p>{user.name}</p>
+                <p>{user.email}</p>
             </div>
         )
     }
@@ -34,8 +35,8 @@ const mapStateToProps = state => ({
     user: state.user
   })
   
-  const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
 
-  })
-  
-  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile))
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile))

@@ -6,11 +6,11 @@ import { Route, Switch } from 'react-router-dom'
 import Home from '../component/Home'
 import MyNavbar from '../component/MyNavbar'
 import OAuth2RedirectHandler from '../component/OAuth2RedirectHandler'
-import Login from '../component/Login'
 import Dashboard from '../component/Dashboard'
 import Profile from '../component/Profile'
 import { userAction } from '../action'
 import { UrlConstant } from '../constant'
+import PrivateRoute from '../component/PrivateRoute'
 
 class App extends React.Component {
 
@@ -24,9 +24,8 @@ class App extends React.Component {
         <MyNavbar></MyNavbar>
         <Switch>
           <Route exact path="/" component={Home}></Route>
-          <Route path="/profile" component={Profile}></Route>
-          <Route path="/dashboard" component={Dashboard}></Route>
-          <Route path="/login" component={Login}></Route>
+          <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
+          <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
           <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
         </Switch>
       </div>
