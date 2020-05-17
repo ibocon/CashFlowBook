@@ -4,12 +4,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -89,4 +92,11 @@ public class User implements UserDetails, OAuth2User {
     public boolean isEnabled() {
         return true;
     }
+
+    @OneToMany(
+        targetEntity = Account.class, 
+        cascade = CascadeType.ALL, 
+        fetch = FetchType.EAGER
+    )
+    private Collection<Account> accounts;
 }

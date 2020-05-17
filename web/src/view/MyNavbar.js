@@ -20,6 +20,7 @@ class MyNavbar extends React.Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         {!isEmpty(user) && <Nav.Link as={NavLink} to="/profile">프로필</Nav.Link>}
+                        {!isEmpty(user) && <Nav.Link as={NavLink} to="/account">계정과목</Nav.Link>}
                         {!isEmpty(user) && <Nav.Link as={NavLink} to="/dashboard">대시보드</Nav.Link>}
                     </Nav>
                     <Nav>

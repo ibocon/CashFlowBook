@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from "react-router"
-import './App.sass'
 import { Route, Switch } from 'react-router-dom'
-import Home from '../component/Home'
-import MyNavbar from '../component/MyNavbar'
-import OAuth2RedirectHandler from '../component/OAuth2RedirectHandler'
-import Dashboard from '../component/Dashboard'
-import Profile from '../component/Profile'
+import './App.sass'
 import { userAction } from '../action'
 import { UrlConstant } from '../constant'
-import PrivateRoute from '../component/PrivateRoute'
+
+import { 
+  PrivateRoute, OAuth2RedirectHandler,
+} from '../component'
+
+import {
+  Home, MyNavbar, Dashboard, Profile, Account
+} from '../view'
 
 class App extends React.Component {
 
@@ -25,6 +27,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
+          <PrivateRoute path="/account" component={Account}></PrivateRoute>
           <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
           <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
         </Switch>
