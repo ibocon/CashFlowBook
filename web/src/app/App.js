@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from "react-router"
 import { Route, Switch } from 'react-router-dom'
 import './App.sass'
-import { userAction } from '../action'
+import { UserAction } from '../action'
 import { UrlConstant } from '../constant'
 
 import { 
@@ -37,13 +37,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+
 })
 
 const mapDispatchToProps = dispatch => ({
     loadCurrentUser: () => {
       if(localStorage.getItem(UrlConstant.ACCESS_TOKEN)) {
-        dispatch(userAction.getCurrentUserAsync());
+        dispatch(UserAction.getCurrentUserAsync());
       } 
     }
 })

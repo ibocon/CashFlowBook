@@ -26,7 +26,7 @@ public class Account {
     private Long id;
 
     @ManyToOne(targetEntity = User.class)
-    final private Long user;
+    final private User user;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -34,4 +34,5 @@ public class Account {
 
     @NotNull
     private String name;
+
 }

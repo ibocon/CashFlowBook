@@ -4,7 +4,7 @@ import { withRouter } from "react-router"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
-import { userAction } from '../action'
+import { UserAction } from '../action'
 import { isEmpty } from '../util'
 import { UrlConstant } from '../constant'
 
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     logout: e => {
         e.preventDefault();
-        dispatch(userAction.logout());
+        dispatch(UserAction.logout());
     }
 })
 

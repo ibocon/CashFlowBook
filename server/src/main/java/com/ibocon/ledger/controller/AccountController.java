@@ -28,13 +28,13 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<?> read(@CurrentUser User user) {
-        List<Account> accounts = accountRepository.findByUser(user.getId());
-        return new ResponseEntity<>(accounts, HttpStatus.FOUND);
+        List<Account> accounts = accountRepository.findByUser(user);
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<?> create(@CurrentUser User user, @RequestBody AccountRequest accountRequest ) {
-        Account account = new Account(user.getId());
+        Account account = new Account(user);
         account.setBase(accountRequest.getBase());
         account.setName(accountRequest.getName());
         account = accountRepository.save(account);

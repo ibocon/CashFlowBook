@@ -10,23 +10,24 @@ import thunkMiddleware from 'redux-thunk'
 import { BrowserRouter as Router } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunkMiddleware)
-    // composeEnhancers(
-    //   applyMiddleware(thunkMiddleware)
-    // )
+    // applyMiddleware(thunkMiddleware)
+    composeEnhancers(
+      applyMiddleware(thunkMiddleware)
+    )
   );
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Router>
       <Provider store={store}>
         <App />
       </Provider>
     </Router>
-  </React.StrictMode>,
+  // </React.StrictMode>
+  ,
   document.getElementById('root')
 );
 

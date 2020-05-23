@@ -1,7 +1,7 @@
 package com.ibocon.ledger.model;
 
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -46,7 +47,7 @@ public class User implements UserDetails, OAuth2User {
     private Long id;
 
     @Email
-    @NotNull
+    @NotBlank
     final private String email;
 
     private String name;
@@ -69,7 +70,7 @@ public class User implements UserDetails, OAuth2User {
     private Map<String, Object> attributes;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public List<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
@@ -98,5 +99,5 @@ public class User implements UserDetails, OAuth2User {
         cascade = CascadeType.ALL, 
         fetch = FetchType.EAGER
     )
-    private Collection<Account> accounts;
+    private List<Account> accounts;
 }
