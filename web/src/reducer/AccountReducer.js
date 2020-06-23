@@ -24,9 +24,11 @@ const AccountReducer = (state = initialState, action) => {
                     show: action.show
                 }
             })
-        case ActionConstant.CHANGE_ACCOUNTMODAL_HANDLER:
+        // TODO: 덮어 써지는 문제가 있음
+        case ActionConstant.REGISTER_ACCOUNT_HANDLER:
             return Object.assign({}, state, {
                 modal: {
+                    show: state.modal.show,
                     handler: action.handler
                 }
             })

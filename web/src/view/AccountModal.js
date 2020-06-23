@@ -9,7 +9,7 @@ class AccountModal extends React.Component {
         super(props);
         this.state = {
             base: null,
-            name: null
+            name: ""
         }
     }
 
@@ -28,11 +28,15 @@ class AccountModal extends React.Component {
                     <Modal.Title>계정</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form id="account-form" onSubmit={() => {this.props.handler({...this.state});}}>
+                    <Form id="account-form" onSubmit={(event) => {
+                            event.preventDefault();
+                            console.log(this.props.handler);
+                            this.props.handler({...this.state});
+                        }}>
                         <Form.Group controlId="baseAccount">
                             <Form.Label>카테고리</Form.Label>                  
                             <ToggleButtonGroup  type="radio" name="base" defaultValue={this.state.base} 
-                                onChange={(event) => {this.setState({base: event.target.value})}}
+                                onChange={(value) => {this.setState({base: value})}}
                             >
                                 <ToggleButton variant="info" value="Asset"> Asset</ToggleButton>
                                 <ToggleButton variant="info" value="Capital"> Capital</ToggleButton>

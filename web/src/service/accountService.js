@@ -12,7 +12,8 @@ export const AccountService = {
     async createAccount(account) {
         return await request({
             url: UrlConstant.API_BASE_URL + "/account",
-            method: 'POST'
+            method: 'POST',
+            body: JSON.stringify(account)
         })
     }
 }

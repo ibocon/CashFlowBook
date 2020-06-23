@@ -26,7 +26,7 @@ class Account extends React.Component {
                 </div>
                 <Button variant="primary" onClick={() => {
                     this.props.showModal(true);
-                    this.props.handleAccount(AccountAction.createAccountAsync);
+                    this.props.RegisterAccountHandler(this.props.createAccount);
                 }}>계정 만들기</Button>
 
                 <AccountModal></AccountModal>
@@ -46,8 +46,11 @@ const mapDispatchToProps = dispatch => ({
     showModal: (show) => {
         dispatch(AccountAction.showModal(show))
     },
-    handleAccount: (handler) => {
-        dispatch(AccountAction.handleAccount(handler))
+    RegisterAccountHandler: (handler) => {
+        dispatch(AccountAction.RegisterAccountHandler(handler))
+    },
+    createAccount: (account) => {
+        dispatch(AccountAction.createAccountAsync(account));
     }
 })
 

@@ -17,8 +17,8 @@ export const AccountAction = {
         return {type: ActionConstant.SHOW_MODAL, show}
     },
 
-    handleAccount(handler) {
-        return {type: ActionConstant.CHANGE_ACCOUNTMODAL_HANDLER, handler}
+    RegisterAccountHandler(handler) {
+        return {type: ActionConstant.REGISTER_ACCOUNT_HANDLER, handler}
     },
     
     createAccountAsync(account) {
