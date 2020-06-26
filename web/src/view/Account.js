@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { AccountAction } from '../action'
+import { AccountAction, ModalAction } from '../action'
 import { Button } from 'react-bootstrap'
 import AccountModal from './AccountModal'
 
@@ -44,10 +44,10 @@ const mapDispatchToProps = dispatch => ({
         dispatch(AccountAction.getAccountsAsync())
     },
     showModal: (show) => {
-        dispatch(AccountAction.showModal(show))
+        dispatch(ModalAction.showModal(show))
     },
     RegisterAccountHandler: (handler) => {
-        dispatch(AccountAction.RegisterAccountHandler(handler))
+        dispatch(ModalAction.RegisterAccountHandler(handler))
     },
     createAccount: (account) => {
         dispatch(AccountAction.createAccountAsync(account));

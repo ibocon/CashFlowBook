@@ -63,8 +63,8 @@ class AccountModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    show: state.account.modal.show,
-    handler: state.account.modal.handler
+    show: state.modal.show,
+    handler: state.modal.handler
 })
 
 const mapDispatchToProps = dispatch => ({
