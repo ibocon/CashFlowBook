@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Button, Modal, Form, ToggleButtonGroup, ToggleButton } from 'react-bootstrap'
-import { AccountAction } from '../action'
+import { ModalAction } from '../action'
 
 class AccountModal extends React.Component {
     constructor(props) {
@@ -30,8 +30,8 @@ class AccountModal extends React.Component {
                 <Modal.Body>
                     <Form id="account-form" onSubmit={(event) => {
                             event.preventDefault();
-                            console.log(this.props.handler);
                             this.props.handler({...this.state});
+                            this.props.showModal(false);
                         }}>
                         <Form.Group controlId="baseAccount">
                             <Form.Label>카테고리</Form.Label>                  
@@ -69,7 +69,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     showModal: (show) => {
-        dispatch(AccountAction.showModal(show))
+        dispatch(ModalAction.showModal(show))
     }
 })
 

@@ -1,8 +1,8 @@
 import { ActionConstant } from '../constant'
 
 const initialState = {
-    list: [],
-}
+    list: []
+};
 
 const AccountReducer = (state = initialState, action) => {
     switch(action.type) {

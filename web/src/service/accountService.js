@@ -2,8 +2,8 @@ import { UrlConstant } from '../constant'
 import { request } from '../util'
 
 export const AccountService = {
-    async getAccounts() {
-        return await request({
+    getAccounts() {
+        return request({
             url: UrlConstant.API_BASE_URL + "/account",
             method: 'GET'
         });

@@ -11,7 +11,7 @@ import {
 } from '../component'
 
 import {
-  Home, MyNavbar, Dashboard, Profile, Account
+  Home, MyNavbar, Dashboard, Profile, AccountList
 } from '../view'
 
 class App extends React.Component {
@@ -27,7 +27,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
-          <PrivateRoute path="/account" component={Account}></PrivateRoute>
+          <PrivateRoute path="/account" component={AccountList}></PrivateRoute>
           <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
           <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
         </Switch>
