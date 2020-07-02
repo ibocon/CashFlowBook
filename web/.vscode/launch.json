@@ -8,8 +8,11 @@
             "type": "chrome",
             "name": "React",
             "request": "launch",
+            "port": 9222,
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}/web/src"
+            "webRoot": "${workspaceFolder}/src",
+            "sourceMaps": true,
+            "trace": true
         }
     ]
 }

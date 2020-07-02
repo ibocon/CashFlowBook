@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "npx webpack",
-    "start": "npx webpack-dev-server --open",
+    "start": "webpack-dev-server --inline --hot",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

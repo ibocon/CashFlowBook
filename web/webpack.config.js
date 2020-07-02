@@ -2,8 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: [ '@babel/polyfill', './src/index.js'],
-  devtool: 'inline-source-map',
+  context: path.resolve(__dirname, 'src'),
+  entry: [ '@babel/polyfill', './index.js'],
+  devtool: 'source-map',
   devServer : {
     historyApiFallback: true
   },
@@ -15,7 +16,7 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./index.html"
   })],
   module: {
     rules: [
