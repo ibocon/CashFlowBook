@@ -34,6 +34,7 @@ build/
 
 # dependencies
 /web/node_modules
+/web/dist
 /.pnp
 .pnp.js
 
