@@ -49,7 +49,11 @@ class AccountList extends React.Component {
                 </div>
                 <Button variant="primary" onClick={() => {
                     this.props.showModal(true);
-                    this.props.RegisterAccountHandler(this.props.createAccount);
+                    this.props.RegisterAccountHandler((account) => 
+                    {
+                        this.props.createAccount(account);
+                        this.props.getAccounts();
+                    });
                 }}>계정 만들기</Button>
 
                 <AccountModal></AccountModal>

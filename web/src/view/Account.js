@@ -7,8 +7,7 @@ class Account extends React.Component {
     render() {
         return (
          <div>
-            <p>{this.props.account.base}</p> 
-            <p>{this.props.account.name}</p>
+             <h3>{this.props.account.name}</h3>
          </div>   
         )
     }
