@@ -1,16 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: [ '@babel/polyfill', './index.js'],
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   devServer : {
     contentBase: './dist',
     historyApiFallback: true,
     inline: true,
-    hot: true
+    hot: true,
   },
   cache: true,
   mode: 'development',
@@ -24,6 +25,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html"
     }),
+    new webpack.SourceMapDevToolPlugin()
   ],
   module: {
     rules: [
