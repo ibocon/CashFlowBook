@@ -1,10 +1,11 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from "react-router"
-import { Route, Switch } from 'react-router-dom'
-import './App.sass'
-import { UserAction } from '../action'
-import { UrlConstant } from '../constant'
+import { hot } from 'react-hot-loader/root';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+import './App.sass';
+import { UserAction } from '../action';
+import { UrlConstant } from '../constant';
 
 import { 
   PrivateRoute, OAuth2RedirectHandler,
@@ -48,4 +49,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default hot(withRouter(connect(mapStateToProps, mapDispatchToProps)(App)))

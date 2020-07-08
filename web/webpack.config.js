@@ -1,12 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: [ '@babel/polyfill', './index.js'],
-  devtool: 'source-map',
+  devtool: 'eval',
   devServer : {
-    historyApiFallback: true
+    contentBase: './dist',
+    historyApiFallback: true,
+    inline: true,
+    hot: true
   },
   cache: true,
   mode: 'development',
@@ -15,9 +19,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
-  plugins: [new HtmlWebpackPlugin({
+  plugins: [
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new HtmlWebpackPlugin({
       template: "./index.html"
-  })],
+    }),
+  ],
   module: {
     rules: [
         {

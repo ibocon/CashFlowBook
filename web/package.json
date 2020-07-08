@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "npx webpack",
-    "start": "webpack-dev-server --inline --hot",
+    "start": "npx webpack-dev-server",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -48,9 +48,11 @@
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.2.0",
+    "react-hot-loader": "^4.12.21",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "source-map-loader": "^1.0.1",
