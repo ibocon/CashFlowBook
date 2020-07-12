@@ -25,7 +25,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html"
     }),
-    new webpack.SourceMapDevToolPlugin()
+    new webpack.SourceMapDevToolPlugin(),
+    new webpack.DefinePlugin({
+      '__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
+    })
   ],
   module: {
     rules: [

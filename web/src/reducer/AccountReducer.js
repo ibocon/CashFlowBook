@@ -11,7 +11,9 @@ const AccountReducer = (state = initialState, action) => {
                 list: action.accounts
             });
         case ActionConstant.CREATE_ACCOUNT:
-            return Object.assign({}, state);
+            return Object.assign({}, state, {
+                list: [ ...state.list, action.account]
+            });
         default:
             return state;
     }

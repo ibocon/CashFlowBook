@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { Button } from 'react-bootstrap';
 import { AccountAction, ModalAction } from '../action';
 import {AccountModal, Account} from '../view';
+import { AccountService } from '../service';
 
 class AccountList extends React.Component {
 
@@ -32,7 +33,7 @@ class AccountList extends React.Component {
 
         return (
             <div>
-                <p>Test5</p>
+                <p>Test2</p>
                 <h1>계정과목</h1>
                 <div>
                     <h2>자산</h2>
@@ -53,7 +54,6 @@ class AccountList extends React.Component {
                     this.props.RegisterAccountHandler((account) => 
                     {
                         this.props.createAccount(account);
-                        this.props.getAccounts();
                     });
                 }}>계정 만들기</Button>
 
@@ -68,8 +68,9 @@ const mapStateToProps = state => ({
 })
   
 const mapDispatchToProps = dispatch => ({
-    getAccounts: () => {
-        dispatch(AccountAction.getAccountAsync())
+    getAccounts: async () => {
+        const accounts = await AccountService.getAccounts();
+        dispatch(AccountAction.getAccount(accounts));
     },
     showModal: (show) => {
         dispatch(ModalAction.showModal(show))
@@ -77,8 +78,9 @@ const mapDispatchToProps = dispatch => ({
     RegisterAccountHandler: (handler) => {
         dispatch(ModalAction.RegisterAccountHandler(handler))
     },
-    createAccount: (account) => {
-        dispatch(AccountAction.createAccountAsync(account));
+    createAccount: async (account) => {
+        await AccountService.createAccount(account);
+        dispatch(AccountAction.createAccount(account));
     }
 })
 
