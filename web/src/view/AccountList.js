@@ -57,13 +57,16 @@ class AccountList extends React.Component {
                     });
                 }}>계정 만들기</Button>
 
-                <AccountModal></AccountModal>
+                <AccountModal   show={this.props.show} 
+                                handleModal={this.props.showModal} 
+                                handleAccount={this.props.createAccount} />
             </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
+    show: state.modal.show,
     account: state.account
 })
   

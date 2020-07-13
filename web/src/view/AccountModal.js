@@ -1,8 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { Button, Modal, Form, ToggleButtonGroup, ToggleButton } from 'react-bootstrap'
-import { ModalAction } from '../action'
 
 class AccountModal extends React.Component {
     constructor(props) {
@@ -11,6 +8,19 @@ class AccountModal extends React.Component {
             base: null,
             name: ""
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleHide = this.handleHide.bind(this)
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.handleAccount({...this.state});
+        this.props.handleModal(false);
+    }
+
+    handleHide() {
+        this.props.handleModal(false);
     }
 
     render() {
@@ -23,21 +33,18 @@ class AccountModal extends React.Component {
         }
 
         return (
-            <Modal show={this.props.show} onHide={() => this.props.showModal(false)}>
+            <Modal show={this.props.show} onHide={this.handleHide}>
                 <Modal.Header>
                     <Modal.Title>계정</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form id="account-form" onSubmit={(event) => {
-                            event.preventDefault();
-                            this.props.handler({...this.state});
-                            this.props.showModal(false);
-                        }}>
+                    <Form id="account-form" onSubmit={this.handleSubmit}>
                         <Form.Group controlId="baseAccount">
                             <Form.Label>카테고리</Form.Label>                  
-                            <ToggleButtonGroup  type="radio" name="base" defaultValue={this.state.base} 
-                                onChange={(value) => {this.setState({base: value})}}
-                            >
+                            <ToggleButtonGroup  type="radio" 
+                                                name="base" 
+                                                defaultValue={this.state.base} 
+                                                onChange={(value) => {this.setState({base: value})}}>
                                 <ToggleButton variant="info" value="Asset"> Asset</ToggleButton>
                                 <ToggleButton variant="info" value="Capital"> Capital</ToggleButton>
                                 <ToggleButton variant="info" value="Liability"> Liability</ToggleButton>
@@ -47,30 +54,16 @@ class AccountModal extends React.Component {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>이름</Form.Label>
-                            <Form.Control type="text" value={this.state.name}
-                                onChange={(event) => {this.setState({name: event.target.value})}}
-                            ></Form.Control>
+                            <Form.Control   type="text" 
+                                            value={this.state.name}
+                                            onChange={(event) => {this.setState({name: event.target.value})}}></Form.Control>
                         </Form.Group>
                         <Button variant="primary" type="submit">제출</Button>
                     </Form>
                 </Modal.Body>
-                {/* <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.props.showModal(false)}>닫기</Button>
-                </Modal.Footer> */}
             </Modal>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    show: state.modal.show,
-    handler: state.modal.handler
-})
-
-const mapDispatchToProps = dispatch => ({
-    showModal: (show) => {
-        dispatch(ModalAction.showModal(show))
-    }
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AccountModal))
+export default AccountModal
