@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: [ '@babel/polyfill', './index.js'],
+  entry: './index.js',
   devtool: 'eval-source-map',
   devServer : {
     contentBase: './dist',
@@ -51,6 +51,9 @@ module.exports = {
         { 
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
+            resolve: {
+              extensions: [".js", ".jsx"]
+            },
             use: [{
                 loader: 'babel-loader',
                 options: {
