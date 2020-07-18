@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 
-import { Layout } from 'antd'
+import { Layout, Breadcrumb } from 'antd'
+import 'antd/dist/antd.css'
 
 import { UserAction } from '../action'
 import { UrlConstant } from '../constant'
@@ -19,8 +20,8 @@ import {
 
 import './App.sass'
 
-const { Content } = Layout
-class App extends React.Component {
+const { Content, Footer } = Layout
+class _App extends React.Component {
 
   componentDidMount() {
     this.props.loadCurrentUser()
@@ -28,18 +29,25 @@ class App extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout style={{ minHeight: '100vh' }}>
         <MySider></MySider>
-        <Layout>
+        <Layout className="site-layout">
           <MyHeader></MyHeader>
-          <Content>
-            <Switch>
-              <Route exact path="/" component={Home}></Route>
-              <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
-              <PrivateRoute path="/account" component={AccountList}></PrivateRoute>
-              <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
-            </Switch>
+          <Content style={{ margin: '0 16px'}}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>User</Breadcrumb.Item>
+                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <Switch>
+                <Route exact path="/" component={Home}></Route>
+                <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
+                <PrivateRoute path="/account" component={AccountList}></PrivateRoute>
+                <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+              </Switch>
+            </div>
           </Content>
+          <Footer style={{ textAlign: 'center' }}>Ledger ©2020 Created by Yegun Kim</Footer>
         </Layout>
       </Layout>
     )
@@ -58,4 +66,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default hot(withRouter(connect(mapStateToProps, mapDispatchToProps)(App)))
+export const App = hot(withRouter(connect(mapStateToProps, mapDispatchToProps)(_App)))

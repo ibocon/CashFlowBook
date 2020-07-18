@@ -29,24 +29,19 @@ class _MyHeader extends React.Component {
     }
 
     render() {
-        const { user, logout } = this.props;
-
+        const { user, logout } = this.props
+        const googleAuthUrl = UrlConstant.GOOGLE_AUTH_URL
         return (   
             <Header className="site-layout-background" style={{ padding: 0 }}>
-                {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                    className: 'trigger',
-                    onClick: this.toggle,
-                })}
                 <Menu theme="light" mode="horizontal">
                     {
                         isEmpty(user) &&
                         <Menu.Item style={{float: 'right'}} >
-                            <span>로그인</span>
-                            <Link to={UrlConstant.GOOGLE_AUTH_URL} />
+                            <a href={googleAuthUrl}><span>로그인</span></a>
                         </Menu.Item>
                     }
                     {
-                        isEmpty(user) &&
+                        !isEmpty(user) &&
                         <Menu.Item style={{float: 'right'}} onClick={logout} >
                             <span>로그아웃</span>
                         </Menu.Item>
@@ -61,8 +56,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    logout: e => {
-        e.preventDefault();
+    logout: () => {
         dispatch(UserAction.logout());
     }
 })

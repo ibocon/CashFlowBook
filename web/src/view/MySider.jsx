@@ -7,7 +7,7 @@ import { Layout, Menu } from 'antd'
 import {
     PieChartOutlined,
     DesktopOutlined,
-  } from '@ant-design/icons'
+} from '@ant-design/icons'
 
 import { isEmpty } from '../util'
 
@@ -21,7 +21,7 @@ class _MySider extends React.Component {
             collapsed: false,
         }
 
-        this.onCollapse.bind(this)
+        this.onCollapse = this.onCollapse.bind(this)
     }
 
     onCollapse(collapsed) {
@@ -31,7 +31,7 @@ class _MySider extends React.Component {
     render() {
         const { user } = this.props;
 
-        return (   
+        return (
             <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                 <div className="logo" />
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -42,7 +42,7 @@ class _MySider extends React.Component {
                             <Link to="/profile" />
                         </Menu.Item>
                     }
-                    {
+                    {   
                         !isEmpty(user) &&
                         <Menu.Item key="2" icon={<DesktopOutlined />}>
                             <span>계정과목</span>
