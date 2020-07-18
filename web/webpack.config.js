@@ -30,6 +30,11 @@ module.exports = {
       '__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
     })
   ],
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
+  },
   module: {
     rules: [
         {
