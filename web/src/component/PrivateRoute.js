@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 import {
   Route,
   Redirect,
   withRouter
-} from "react-router-dom";
-import { connect } from 'react-redux';
-import { isEmpty } from '../util';
+} from "react-router-dom"
+import { connect } from 'react-redux'
+import { isEmpty } from '../util'
 
 class PrivateRoute extends React.Component {
     render() {

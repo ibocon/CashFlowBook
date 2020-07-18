@@ -1,6 +1,6 @@
 import { ActionConstant } from '../constant'
 
-const UserReducer = (state = {}, action) => {
+export const UserReducer = (state = {}, action) => {
     switch(action.type) {
         case ActionConstant.GET_CURRENT_USER:
             return action.user;
@@ -12,5 +12,3 @@ const UserReducer = (state = {}, action) => {
             return state;
     }
 }
-
-export default UserReducer

@@ -1,10 +1,10 @@
-import React from 'react';
-import { UrlConstant } from '../constant';
+import React from 'react'
+import { UrlConstant } from '../constant'
 import { Redirect } from 'react-router-dom'
 
 class OAuth2RedirectHandler extends React.Component {
     getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
 
         var results = regex.exec(this.props.location.search);

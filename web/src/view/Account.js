@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
-class Account extends React.Component {
+class _Account extends React.Component {
 
     render() {
         return (
@@ -21,4 +21,4 @@ const mapDispatchToProps = dispatch => ({
 
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Account))
+export const Account = withRouter(connect(mapStateToProps, mapDispatchToProps)(_Account))

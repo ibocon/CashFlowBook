@@ -4,7 +4,7 @@ const initialState = {
     list: []
 };
 
-const AccountReducer = (state = initialState, action) => {
+export const AccountReducer = (state = initialState, action) => {
     switch(action.type) {
         case ActionConstant.GET_ACCOUNTS:
             return Object.assign({}, state, {
@@ -18,5 +18,3 @@ const AccountReducer = (state = initialState, action) => {
             return state;
     }
 }
-
-export default AccountReducer

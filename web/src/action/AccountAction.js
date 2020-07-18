@@ -1,4 +1,4 @@
-import { ActionConstant } from '../constant';
+import { ActionConstant } from '../constant'
 
 export const AccountAction = {
     getAccount(accounts) {

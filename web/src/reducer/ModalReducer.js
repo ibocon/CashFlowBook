@@ -9,7 +9,7 @@ const initialState = {
     handler: null
 }
 
-const ModalReducer = (state = initialState, action) => {
+export const ModalReducer = (state = initialState, action) => {
     switch(action.type) {
         case ActionConstant.SHOW_MODAL:
             return Object.assign({}, state, {
@@ -24,5 +24,3 @@ const ModalReducer = (state = initialState, action) => {
             return state;
     }
 }
-
-export default ModalReducer

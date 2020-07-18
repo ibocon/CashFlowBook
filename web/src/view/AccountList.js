@@ -1,12 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Button } from 'react-bootstrap';
-import { AccountAction, ModalAction } from '../action';
-import {AccountModal, Account} from '../view';
-import { AccountService } from '../service';
+import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { AccountAction, ModalAction } from '../action'
+import {AccountModal, Account} from '../view'
+import { AccountService } from '../service'
 
-class AccountList extends React.Component {
+class _AccountList extends React.Component {
 
     componentDidMount() {
         this.props.getAccounts();
@@ -49,13 +48,13 @@ class AccountList extends React.Component {
                     <h2>수익</h2>
                     {revenues}
                 </div>
-                <Button variant="primary" onClick={() => {
+                {/* <Button variant="primary" onClick={() => {
                     this.props.showModal(true);
                     this.props.RegisterAccountHandler((account) => 
                     {
                         this.props.createAccount(account);
                     });
-                }}>계정 만들기</Button>
+                }}>계정 만들기</Button> */}
 
                 <AccountModal   show={this.props.show} 
                                 handleModal={this.props.showModal} 
@@ -87,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AccountList))
+export const AccountList = withRouter(connect(mapStateToProps, mapDispatchToProps)(_AccountList))
