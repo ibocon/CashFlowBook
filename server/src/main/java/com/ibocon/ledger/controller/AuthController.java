@@ -5,12 +5,12 @@ import java.net.URI;
 import javax.validation.Valid;
 
 import com.ibocon.ledger.exception.BadRequestException;
-import com.ibocon.ledger.model.User;
+import com.ibocon.ledger.model.LedgerUser;
 import com.ibocon.ledger.model.payload.ApiResponse;
 import com.ibocon.ledger.model.payload.AuthResponse;
 import com.ibocon.ledger.model.payload.LoginRequest;
 import com.ibocon.ledger.model.payload.SignUpRequest;
-import com.ibocon.ledger.repository.UserRepository;
+import com.ibocon.ledger.repository.LedgerUserRepository;
 import com.ibocon.ledger.security.jwt.JwtTokenProvider;
 import com.ibocon.ledger.security.oauth2.OAuth2Provider;
 
@@ -35,7 +35,7 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
+    LedgerUserRepository userRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -60,7 +60,7 @@ public class AuthController {
             throw new BadRequestException("Email address already in use");
         }
 
-        User user = new User(signUpRequest.getEmail(), OAuth2Provider.local);
+        LedgerUser user = new LedgerUser(signUpRequest.getEmail(), OAuth2Provider.local);
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
         user = userRepository.save(user);

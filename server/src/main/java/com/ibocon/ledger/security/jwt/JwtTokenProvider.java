@@ -16,7 +16,7 @@ import org.springframework.security.core.Authentication;
 
 import java.util.Date;
 
-import com.ibocon.ledger.model.User;
+import com.ibocon.ledger.model.LedgerUser;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -31,7 +31,7 @@ public class JwtTokenProvider {
     private int expire;
 
     public String create(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
+        LedgerUser user = (LedgerUser) authentication.getPrincipal();
 
         String jwt = Jwts.builder()
             .setSubject(Long.toString(user.getId()))

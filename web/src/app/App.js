@@ -35,8 +35,8 @@ class _App extends React.Component {
           <MyHeader></MyHeader>
           <Content style={{ margin: '0 16px'}}>
             <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                <Breadcrumb.Item>Bread</Breadcrumb.Item>
+                <Breadcrumb.Item>Crumb</Breadcrumb.Item>
             </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
               <Switch>

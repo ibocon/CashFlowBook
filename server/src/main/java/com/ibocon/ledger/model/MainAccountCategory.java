@@ -1,6 +1,6 @@
 package com.ibocon.ledger.model;
 
-public enum BaseAccount {
+public enum MainAccountCategory {
     // 자산
     Asset,
     // 자본

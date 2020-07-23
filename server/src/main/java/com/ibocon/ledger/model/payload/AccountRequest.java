@@ -2,18 +2,16 @@ package com.ibocon.ledger.model.payload;
 
 import javax.validation.constraints.NotBlank;
 
-import com.ibocon.ledger.model.BaseAccount;
+import com.ibocon.ledger.domain.account.OfficialAccount;
 
 import lombok.Data;
 
 @Data
 public class AccountRequest {
 
-    Long id;
+    @NotBlank
+    OfficialAccount officialAccount;
 
     @NotBlank
-    BaseAccount base;
-
-    @NotBlank
-    String name;
+    String accountName;
 }

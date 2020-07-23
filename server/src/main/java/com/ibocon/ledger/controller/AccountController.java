@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import com.ibocon.ledger.annotation.CurrentUser;
-import com.ibocon.ledger.model.Account;
-import com.ibocon.ledger.model.User;
+import com.ibocon.ledger.domain.account.UserDefinedAccount;
+import com.ibocon.ledger.domain.account.UserDefinedAccountRepository;
+import com.ibocon.ledger.domain.user.LedgerUser;
 import com.ibocon.ledger.model.payload.AccountRequest;
-import com.ibocon.ledger.repository.AccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,30 +24,27 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RequestMapping(path="/account", produces="application/json")
 public class AccountController {
     @Autowired
-    private AccountRepository accountRepository;
+    private UserDefinedAccountRepository accountRepository;
 
     @GetMapping
-    public ResponseEntity<?> read(@CurrentUser User user) {
-        List<Account> accounts = accountRepository.findByUser(user);
+    public ResponseEntity<?> read(@CurrentUser LedgerUser user) {
+        List<UserDefinedAccount> accounts = accountRepository.findByBelongTo(user);
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@CurrentUser User user, @RequestBody AccountRequest accountRequest ) {
-        Account account = new Account(user);
-        account.setBase(accountRequest.getBase());
-        account.setName(accountRequest.getName());
+    public ResponseEntity<?> create(@CurrentUser LedgerUser user, @RequestBody AccountRequest accountRequest ) {
+        UserDefinedAccount account = new UserDefinedAccount(accountRequest.getOfficialAccount(), accountRequest.getAccountName());
         account = accountRepository.save(account);
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@CurrentUser User user, @RequestBody AccountRequest accountRequest) {
-        Optional<Account> optionalAccount = accountRepository.findById(accountRequest.getId());
-        if(optionalAccount.isPresent()){
-            Account account = optionalAccount.get();
-            account.setBase(accountRequest.getBase());
-            account.setName(accountRequest.getName());
+    public ResponseEntity<?> update(@CurrentUser LedgerUser user, @RequestBody AccountRequest accountRequest) {
+        List<UserDefinedAccount> optionalAccount = accountRepository.findByBelongToAndAccountName(user, accountRequest.getAccountName());
+        if(!optionalAccount.isEmpty()){
+            UserDefinedAccount account = optionalAccount.get(0);
+            // TODO 계정 정보를 업데이트하자.
             account = accountRepository.save(account);
 
             return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
@@ -57,10 +54,10 @@ public class AccountController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@CurrentUser User user, @RequestBody AccountRequest accountRequest) {
-        Optional<Account> optionalAccount = accountRepository.findById(accountRequest.getId());
+    public ResponseEntity<?> delete(@CurrentUser LedgerUser user, @RequestBody AccountRequest accountRequest) {
+        Optional<UserDefinedAccount> optionalAccount = accountRepository.findById(accountRequest.getId());
         if(optionalAccount.isPresent()){
-            Account account = optionalAccount.get();
+            UserDefinedAccount account = optionalAccount.get();
             accountRepository.deleteById(account.getId());
             return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
         }else{

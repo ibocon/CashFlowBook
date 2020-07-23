@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { AccountAction, ModalAction } from '../action'
-import {AccountModal, Account} from '../view'
 import { AccountService } from '../service'
+import { Account } from './Account'
+import { AccountModal } from './AccountModal'
 
 class _AccountList extends React.Component {
 

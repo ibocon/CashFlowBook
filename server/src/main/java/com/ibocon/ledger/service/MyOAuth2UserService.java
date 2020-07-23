@@ -2,8 +2,8 @@ package com.ibocon.ledger.service;
 
 import java.util.Optional;
 
-import com.ibocon.ledger.model.User;
-import com.ibocon.ledger.repository.UserRepository;
+import com.ibocon.ledger.model.LedgerUser;
+import com.ibocon.ledger.repository.LedgerUserRepository;
 import com.ibocon.ledger.security.oauth2.OAuth2Provider;
 import com.ibocon.ledger.security.oauth2.userinfo.OAuth2UserInfo;
 import com.ibocon.ledger.security.oauth2.userinfo.OAuth2UserInfoFactory;
@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
 public class MyOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private LedgerUserRepository userRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -34,7 +34,7 @@ public class MyOAuth2UserService extends DefaultOAuth2UserService {
                 throw new OAuth2AuthenticationException(new OAuth2Error("400"), "Email validation failed.");
             }
 
-            User user = getUser(oAuth2UserInfo);
+            LedgerUser user = getUser(oAuth2UserInfo);
             if(user == null) {
                 user = signupUser(userRequest, oAuth2UserInfo);
             }
@@ -68,8 +68,8 @@ public class MyOAuth2UserService extends DefaultOAuth2UserService {
         return provider.equals(OAuth2Provider.valueOf(getRegistrationId(userRequest)));
     }
 
-    private User getUser(OAuth2UserInfo oAuth2UserInfo) {
-        Optional<User> optional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
+    private LedgerUser getUser(OAuth2UserInfo oAuth2UserInfo) {
+        Optional<LedgerUser> optional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
         if(optional.isPresent()) {
             return optional.get();
         }
@@ -78,12 +78,12 @@ public class MyOAuth2UserService extends DefaultOAuth2UserService {
         }
     }
 
-    private User signupUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-        User user = new User(oAuth2UserInfo.getEmail(), OAuth2Provider.valueOf(getRegistrationId(oAuth2UserRequest)));
+    private LedgerUser signupUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
+        LedgerUser user = new LedgerUser(oAuth2UserInfo.getEmail(), OAuth2Provider.valueOf(getRegistrationId(oAuth2UserRequest)));
         return updateUser(user, oAuth2UserInfo);
     }
 
-    private User updateUser(User user, OAuth2UserInfo oAuth2UserInfo) {
+    private LedgerUser updateUser(LedgerUser user, OAuth2UserInfo oAuth2UserInfo) {
         user.setName(oAuth2UserInfo.getName());
         user.setImageUrl(oAuth2UserInfo.getImageUrl());
         return userRepository.save(user);

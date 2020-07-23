@@ -1,4 +1,4 @@
-package com.ibocon.ledger.model;
+package com.ibocon.ledger.domain.user;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,14 +13,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ibocon.ledger.domain.account.UserDefinedAccount;
 import com.ibocon.ledger.security.oauth2.OAuth2Provider;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -29,16 +28,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @RequiredArgsConstructor()
 @Entity
-@Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "EMAIL") })
-public class User implements UserDetails, OAuth2User {
+public class LedgerUser implements UserDetails, OAuth2User {
 
     private static final long serialVersionUID = 1L;
 
@@ -50,20 +48,25 @@ public class User implements UserDetails, OAuth2User {
     @NotBlank
     final private String email;
 
-    private String name;
+    private String username;
 
     @JsonIgnore
-    private String password;
+    private String passWord;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    final private OAuth2Provider provider;
+    final private OAuth2Provider outhProvider;
 
     private String imageUrl;
 
     @Override
-    public String getUsername() {
-        return name;
+    public String getName() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return passWord;
     }
 
     @Transient
@@ -95,9 +98,9 @@ public class User implements UserDetails, OAuth2User {
     }
 
     @OneToMany(
-        targetEntity = Account.class, 
+        targetEntity = UserDefinedAccount.class, 
         cascade = CascadeType.ALL, 
         fetch = FetchType.EAGER
     )
-    private List<Account> accounts;
+    private List<UserDefinedAccount> userDefinedAccounts;
 }

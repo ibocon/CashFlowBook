@@ -10,8 +10,7 @@ spring:
         database-platform: org.hibernate.dialect.H2Dialect
         open-in-view: false
         # 모델 변화에 맞춰 테이블 구조 변경
-        generate-ddl: true
-        hibernate.ddl-auto: update
+        hibernate.ddl-auto: none
 
     security:
         oauth2.client.registration.google:
