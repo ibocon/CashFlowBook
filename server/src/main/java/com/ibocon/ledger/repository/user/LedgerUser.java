@@ -1,4 +1,4 @@
-package com.ibocon.ledger.repository.domain.user;
+package com.ibocon.ledger.repository.user;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ibocon.ledger.repository.domain.account.UserDefinedAccount;
+import com.ibocon.ledger.repository.account.UserDefinedAccount;
 import com.ibocon.ledger.config.auth.oauth2.OAuth2Provider;
 
 import org.springframework.security.core.GrantedAuthority;

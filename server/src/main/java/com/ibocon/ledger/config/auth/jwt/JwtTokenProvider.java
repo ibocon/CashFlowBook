@@ -16,7 +16,7 @@ import org.springframework.security.core.Authentication;
 
 import java.util.Date;
 
-import com.ibocon.ledger.repository.domain.user.LedgerUser;
+import com.ibocon.ledger.repository.user.LedgerUser;
 
 import org.springframework.beans.factory.annotation.Value;
 

@@ -1,8 +1,8 @@
-package com.ibocon.ledger.repository.domain.account;
+package com.ibocon.ledger.repository.account;
 
 import java.util.List;
 
-import com.ibocon.ledger.repository.domain.user.LedgerUser;
+import com.ibocon.ledger.repository.user.LedgerUser;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package com.ibocon.ledger.repository.domain;
+package com.ibocon.ledger.repository;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,13 +1,11 @@
 package com.ibocon.ledger.config.auth;
 
-import com.ibocon.ledger.repository.CookieOAuth2AuthorizationRequestRepository;
 import com.ibocon.ledger.config.auth.jwt.JwtAuthenticationEntryPoint;
 import com.ibocon.ledger.config.auth.jwt.JwtAuthenticationFilter;
 import com.ibocon.ledger.config.auth.oauth2.OAuth2AuthenticationFailureHandler;
 import com.ibocon.ledger.config.auth.oauth2.OAuth2AuthenticationSuccessHandler;
 import com.ibocon.ledger.service.MyUserDetailsService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +20,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 // @Secured, @RolesAllowed, @PreAuthorize, @PostAuthorize
@@ -32,22 +33,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private MyUserDetailsService myUserDetailsService;
-    // @Autowired
-    // private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    @Autowired
-    private MyOAuth2UserService myOauth2UserService;
-    @Autowired
-    private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
-    @Autowired
-    private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
-    @Autowired
-    private CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
-    @Autowired
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final MyUserDetailsService myUserDetailsService;
+    // private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final MyOAuth2UserService myOauth2UserService;
+    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

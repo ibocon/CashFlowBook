@@ -1,4 +1,4 @@
-package com.ibocon.ledger.repository.domain.account;
+package com.ibocon.ledger.repository.account;
 
 public enum MainAccountCategory {
     // 자산

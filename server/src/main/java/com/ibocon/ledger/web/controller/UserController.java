@@ -3,10 +3,9 @@ package com.ibocon.ledger.web.controller;
 import java.util.Optional;
 
 import com.ibocon.ledger.config.auth.CurrentUser;
-import com.ibocon.ledger.repository.domain.user.LedgerUser;
-import com.ibocon.ledger.repository.domain.user.LedgerUserRepository;
+import com.ibocon.ledger.repository.user.LedgerUser;
+import com.ibocon.ledger.repository.user.LedgerUserRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,12 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path="/user", produces="application/json")
 public class UserController {
 
-    @Autowired
-    private LedgerUserRepository userRepository;
+    private final LedgerUserRepository userRepository;
 
     @GetMapping("/me")
     @PreAuthorize("hasRole('USER')")

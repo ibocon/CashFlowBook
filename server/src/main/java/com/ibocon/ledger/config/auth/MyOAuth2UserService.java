@@ -2,13 +2,12 @@ package com.ibocon.ledger.config.auth;
 
 import java.util.Optional;
 
-import com.ibocon.ledger.repository.domain.user.LedgerUser;
-import com.ibocon.ledger.repository.domain.user.LedgerUserRepository;
+import com.ibocon.ledger.repository.user.LedgerUser;
+import com.ibocon.ledger.repository.user.LedgerUserRepository;
 import com.ibocon.ledger.config.auth.oauth2.OAuth2Provider;
 import com.ibocon.ledger.config.auth.oauth2.userinfo.OAuth2UserInfo;
 import com.ibocon.ledger.config.auth.oauth2.userinfo.OAuth2UserInfoFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -19,11 +18,13 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class MyOAuth2UserService extends DefaultOAuth2UserService {
 
-    @Autowired
-    private LedgerUserRepository userRepository;
+    private final LedgerUserRepository userRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {

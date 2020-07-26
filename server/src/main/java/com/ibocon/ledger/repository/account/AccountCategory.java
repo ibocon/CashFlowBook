@@ -1,4 +1,4 @@
-package com.ibocon.ledger.repository.domain.account;
+package com.ibocon.ledger.repository.account;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.ibocon.ledger.repository.domain.TranslatedName;
+import com.ibocon.ledger.repository.TranslatedName;
 
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -3,12 +3,11 @@ package com.ibocon.ledger.web.controller;
 import java.util.List;
 
 import com.ibocon.ledger.config.auth.CurrentUser;
-import com.ibocon.ledger.repository.domain.account.UserDefinedAccount;
-import com.ibocon.ledger.repository.domain.account.UserDefinedAccountRepository;
-import com.ibocon.ledger.repository.domain.user.LedgerUser;
+import com.ibocon.ledger.repository.account.UserDefinedAccount;
+import com.ibocon.ledger.repository.account.UserDefinedAccountRepository;
+import com.ibocon.ledger.repository.user.LedgerUser;
 import com.ibocon.ledger.web.dto.AccountRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +15,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path="/account", produces="application/json")
 public class AccountController {
-    @Autowired
-    private UserDefinedAccountRepository accountRepository;
+    
+    private final UserDefinedAccountRepository accountRepository;
 
     @GetMapping
     public ResponseEntity<?> read(@CurrentUser LedgerUser user) {

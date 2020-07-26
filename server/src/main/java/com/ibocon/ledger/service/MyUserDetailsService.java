@@ -2,20 +2,21 @@ package com.ibocon.ledger.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ibocon.ledger.repository.domain.user.LedgerUser;
-import com.ibocon.ledger.repository.domain.user.LedgerUserRepository;
+import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ibocon.ledger.repository.user.LedgerUser;
+import com.ibocon.ledger.repository.user.LedgerUserRepository;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    LedgerUserRepository userRepository;
+    private final LedgerUserRepository userRepository;
     
     @Override
     @Transactional

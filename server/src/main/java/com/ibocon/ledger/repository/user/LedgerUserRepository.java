@@ -1,4 +1,4 @@
-package com.ibocon.ledger.repository.domain.user;
+package com.ibocon.ledger.repository.user;
 
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;

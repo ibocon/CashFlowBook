@@ -2,7 +2,7 @@ package com.ibocon.ledger.web.dto;
 
 import javax.validation.constraints.NotBlank;
 
-import com.ibocon.ledger.repository.domain.account.OfficialAccount;
+import com.ibocon.ledger.repository.account.OfficialAccount;
 
 import lombok.Data;
 
