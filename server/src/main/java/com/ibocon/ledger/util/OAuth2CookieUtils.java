@@ -10,7 +10,6 @@ import com.nimbusds.oauth2.sdk.util.StringUtils;
 
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 
-
 public class OAuth2CookieUtils extends CookieUtils {
     private static final String OAUTH2_AUTHORIZATION_REQUEST = "oauth2_auth_request";
     private static final String OAUTH2_REDIRECT_URI = "redirect_uri";

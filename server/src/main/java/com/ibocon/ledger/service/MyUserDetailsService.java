@@ -2,8 +2,8 @@ package com.ibocon.ledger.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ibocon.ledger.model.LedgerUser;
-import com.ibocon.ledger.repository.LedgerUserRepository;
+import com.ibocon.ledger.repository.domain.user.LedgerUser;
+import com.ibocon.ledger.repository.domain.user.LedgerUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
