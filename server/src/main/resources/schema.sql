@@ -41,12 +41,13 @@ CREATE TABLE official_account (
 
 CREATE TABLE user_defined_account (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    official_account BIGINT NOT NULL,
     belong_to BIGINT NOT NULL,
+    official_account BIGINT NOT NULL,
     account_name VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (id),
 
-    FOREIGN KEY (official_account) REFERENCES official_account(code),
-    FOREIGN KEY (belong_to) REFERENCES ledger_user(id)
+    FOREIGN KEY (belong_to) REFERENCES ledger_user(id),
+    FOREIGN KEY (official_account) REFERENCES official_account(code)
+    
 );
