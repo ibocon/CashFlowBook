@@ -14,7 +14,6 @@ import com.ibocon.ledger.repository.user.LedgerUserRepository;
 import com.ibocon.ledger.config.auth.jwt.JwtTokenProvider;
 import com.ibocon.ledger.config.auth.oauth2.OAuth2Provider;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
