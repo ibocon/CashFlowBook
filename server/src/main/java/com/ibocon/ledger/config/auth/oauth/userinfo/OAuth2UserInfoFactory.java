@@ -1,8 +1,8 @@
-package com.ibocon.ledger.config.auth.oauth2.userinfo;
+package com.ibocon.ledger.config.auth.oauth.userinfo;
 
 import java.util.Map;
 
-import com.ibocon.ledger.config.auth.oauth2.OAuth2Provider;
+import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
 
 public class OAuth2UserInfoFactory {
     public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String, Object> attributes) throws Exception {

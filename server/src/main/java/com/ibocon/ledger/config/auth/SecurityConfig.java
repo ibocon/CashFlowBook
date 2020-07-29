@@ -2,9 +2,11 @@ package com.ibocon.ledger.config.auth;
 
 import com.ibocon.ledger.config.auth.jwt.JwtAuthenticationEntryPoint;
 import com.ibocon.ledger.config.auth.jwt.JwtAuthenticationFilter;
-import com.ibocon.ledger.config.auth.oauth2.OAuth2AuthenticationFailureHandler;
-import com.ibocon.ledger.config.auth.oauth2.OAuth2AuthenticationSuccessHandler;
-import com.ibocon.ledger.service.MyUserDetailsService;
+import com.ibocon.ledger.config.auth.oauth.CookieOAuth2AuthorizationRequestRepository;
+import com.ibocon.ledger.config.auth.oauth.MyOAuth2UserService;
+import com.ibocon.ledger.config.auth.oauth.OAuth2AuthenticationFailureHandler;
+import com.ibocon.ledger.config.auth.oauth.OAuth2AuthenticationSuccessHandler;
+import com.ibocon.ledger.config.auth.MyUserDetailsService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,13 +36,15 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final MyUserDetailsService myUserDetailsService;
-    // private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final MyOAuth2UserService myOauth2UserService;
+
+    private final CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
     private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
+
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

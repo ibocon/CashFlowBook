@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth.oauth2.userinfo;
+package com.ibocon.ledger.config.auth.oauth.userinfo;
 
 import java.util.Map;
 

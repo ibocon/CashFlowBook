@@ -1,4 +1,4 @@
-package com.ibocon.ledger.service;
+package com.ibocon.ledger.config.auth;
 
 import org.springframework.transaction.annotation.Transactional;
 

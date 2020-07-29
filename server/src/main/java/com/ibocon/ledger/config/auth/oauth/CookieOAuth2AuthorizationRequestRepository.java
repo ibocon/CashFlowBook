@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth;
+package com.ibocon.ledger.config.auth.oauth;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

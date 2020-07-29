@@ -1,12 +1,11 @@
-package com.ibocon.ledger.config.auth;
+package com.ibocon.ledger.config.auth.oauth;
 
 import java.util.Optional;
 
+import com.ibocon.ledger.config.auth.oauth.userinfo.OAuth2UserInfo;
+import com.ibocon.ledger.config.auth.oauth.userinfo.OAuth2UserInfoFactory;
 import com.ibocon.ledger.repository.user.LedgerUser;
 import com.ibocon.ledger.repository.user.LedgerUserRepository;
-import com.ibocon.ledger.config.auth.oauth2.OAuth2Provider;
-import com.ibocon.ledger.config.auth.oauth2.userinfo.OAuth2UserInfo;
-import com.ibocon.ledger.config.auth.oauth2.userinfo.OAuth2UserInfoFactory;
 
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;

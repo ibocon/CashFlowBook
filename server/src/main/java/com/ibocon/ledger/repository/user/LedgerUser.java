@@ -19,8 +19,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
 import com.ibocon.ledger.repository.account.UserDefinedAccount;
-import com.ibocon.ledger.config.auth.oauth2.OAuth2Provider;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -57,7 +57,6 @@ public class LedgerUser implements UserDetails, OAuth2User {
     private String passWord;
     
     public void setPassword(String password) {
-        // TODO 비밀번호를 암호화 하는 과정 필요
         passWord = password;
     }
 
@@ -77,7 +76,6 @@ public class LedgerUser implements UserDetails, OAuth2User {
 
     @Override
     public String getPassword() {
-        // TODO 비밀번호를 복호화?
         return passWord;
     }
 
@@ -109,10 +107,10 @@ public class LedgerUser implements UserDetails, OAuth2User {
         return true;
     }
 
-    @OneToMany(
-        targetEntity = UserDefinedAccount.class, 
-        cascade = CascadeType.ALL, 
-        fetch = FetchType.EAGER
-    )
-    private List<UserDefinedAccount> userDefinedAccounts;
+    // @OneToMany(
+    //     targetEntity = UserDefinedAccount.class, 
+    //     cascade = CascadeType.ALL, 
+    //     fetch = FetchType.LAZY
+    // )
+    // private List<UserDefinedAccount> userDefinedAccounts;
 }

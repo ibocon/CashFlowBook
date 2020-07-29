@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth.oauth2;
+package com.ibocon.ledger.config.auth.oauth;
 
 public enum  OAuth2Provider {
     local,

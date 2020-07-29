@@ -12,7 +12,7 @@ import com.ibocon.ledger.web.dto.LoginRequest;
 import com.ibocon.ledger.web.dto.SignUpRequest;
 import com.ibocon.ledger.repository.user.LedgerUserRepository;
 import com.ibocon.ledger.config.auth.jwt.JwtTokenProvider;
-import com.ibocon.ledger.config.auth.oauth2.OAuth2Provider;
+import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
