@@ -6,7 +6,7 @@ spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 spring.jpa.open-in-view: false
 
 # Entitiy 클래스로 DDL 자동생성 여부
-spring.jpa.hibernate.ddl-auto: none
+spring.jpa.hibernate.ddl-auto: auto
 
 # SQL 문을 Logging 하는 설정
 # https://www.baeldung.com/sql-logging-spring-boot

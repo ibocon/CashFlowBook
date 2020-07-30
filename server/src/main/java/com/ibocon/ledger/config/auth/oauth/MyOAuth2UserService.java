@@ -1,11 +1,17 @@
 package com.ibocon.ledger.config.auth.oauth;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import com.ibocon.ledger.config.auth.oauth.userinfo.OAuth2UserInfo;
-import com.ibocon.ledger.config.auth.oauth.userinfo.OAuth2UserInfoFactory;
-import com.ibocon.ledger.repository.user.LedgerUser;
-import com.ibocon.ledger.repository.user.LedgerUserRepository;
+import javax.servlet.http.HttpSession;
+
+import com.ibocon.ledger.config.auth.oauth.userinfo.GoogleOAuthUserInfo;
+import com.ibocon.ledger.config.auth.oauth.userinfo.BaseOAuthUserInfo;
+import com.ibocon.ledger.repository.user.Role;
+import com.ibocon.ledger.repository.user.User;
+import com.ibocon.ledger.repository.user.UserRepository;
 
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
@@ -23,69 +29,68 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class MyOAuth2UserService extends DefaultOAuth2UserService {
 
-    private final LedgerUserRepository userRepository;
+    private static final String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
+    private final UserRepository userRepository;
+    private final HttpSession httpSession;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(userRequest);
+                                        
         try {
-            OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(getRegistrationId(userRequest), oAuth2User.getAttributes());
-            if(!validateEmail(oAuth2UserInfo)) {
-                throw new OAuth2AuthenticationException(new OAuth2Error("400"), "Email validation failed.");
+            String registrationId = userRequest.getClientRegistration().getRegistrationId();
+            OAuth2Provider accessedProvider = OAuth2Provider.valueOf(registrationId);
+
+            BaseOAuthUserInfo oAuth2UserInfo = getOAuth2UserInfo(accessedProvider, oAuth2User.getAttributes());
+            
+            if(!isValidEmail(oAuth2UserInfo.getEmail())) {
+                throw new OAuth2AuthenticationException(new OAuth2Error("400"), 
+                oAuth2UserInfo.getEmail() + "은 올바른 이메일 형식이 아닙니다.");
             }
 
-            LedgerUser user = getUser(oAuth2UserInfo);
-            if(user == null) {
-                user = signupUser(userRequest, oAuth2UserInfo);
-            }
-            else {
-                if(!validateProvider(userRequest, user.getOuthProvider())) {
-                    throw new OAuth2AuthenticationException(new OAuth2Error("400"), "Looks like you're signed up with " +
-                        user.getOuthProvider() + " account. Please use your " + getRegistrationId(userRequest) +
-                        " account to login.");
-                }
-                user = updateUser(user, oAuth2UserInfo);
+            User user = saveOrUpdate(oAuth2UserInfo);
+
+            if(!accessedProvider.equals(user.getProvider())) {
+                throw new OAuth2AuthenticationException(new OAuth2Error("400"), 
+                "로그인은 " + accessedProvider + "로 하셨지만, 등록은 " + user.getProvider() + "로 진행하셨습니다."
+                + user.getProvider() + "로 다시 로그인해주시길 바랍니다");
             }
 
+            httpSession.setAttribute("user", new SessionUser(user));
             return user;
-        } catch (AuthenticationException ex) {
-            throw ex;
-        } catch (Exception ex) {
+        } catch (AuthenticationException exception) {
+            throw exception;
+        } catch (Exception exception) {
             // Throwing an instance of AuthenticationException will trigger the OAuth2AuthenticationFailureHandler
-            throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
+            throw new InternalAuthenticationServiceException(exception.getMessage(), exception.getCause());
         }
     }
 
-    private String getRegistrationId(OAuth2UserRequest userRequest) {
-        return userRequest.getClientRegistration().getRegistrationId();
-    }
-
-    private Boolean validateEmail(OAuth2UserInfo oAuth2UserInfo) {
-        return !StringUtils.isEmpty(oAuth2UserInfo.getEmail());
-    }
-
-    private Boolean validateProvider(OAuth2UserRequest userRequest, OAuth2Provider provider) {
-        return provider.equals(OAuth2Provider.valueOf(getRegistrationId(userRequest)));
-    }
-
-    private LedgerUser getUser(OAuth2UserInfo oAuth2UserInfo) {
-        Optional<LedgerUser> optional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
-        if(optional.isPresent()) {
-            return optional.get();
-        }
-        else {
-            return null;
+    private BaseOAuthUserInfo getOAuth2UserInfo(OAuth2Provider provider, Map<String, Object> attributes) throws Exception {
+        try {
+            switch(provider) {
+                case google:
+                    return new GoogleOAuthUserInfo(provider, attributes);
+            }
+            throw new UnsupportedOperationException(provider + "가 swich 문에 추가되지 않았습니다.");
+        } catch(IllegalArgumentException exception) {
+            throw new OAuth2AuthenticationException(new OAuth2Error("400"),
+            provider + " 는 아직 지원하지 않는 OAuth2 제공자입니다.");
         }
     }
 
-    private LedgerUser signupUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-        LedgerUser user = new LedgerUser(oAuth2UserInfo.getEmail(), OAuth2Provider.valueOf(getRegistrationId(oAuth2UserRequest)));
-        return updateUser(user, oAuth2UserInfo);
+    private Boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
-    private LedgerUser updateUser(LedgerUser user, OAuth2UserInfo oAuth2UserInfo) {
-        user.setName(oAuth2UserInfo.getName());
-        user.setImageUrl(oAuth2UserInfo.getImageUrl());
+    private User saveOrUpdate(BaseOAuthUserInfo oAuth2UserInfo) {
+        User user = userRepository.findByEmail(oAuth2UserInfo.getEmail())
+                .map(entity -> entity.update(oAuth2UserInfo.getName(), oAuth2UserInfo.getImageUrl()))
+                .orElse(oAuth2UserInfo.toEntity());
+
         return userRepository.save(user);
     }
 }

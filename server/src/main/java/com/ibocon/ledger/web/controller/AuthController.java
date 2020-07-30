@@ -5,12 +5,13 @@ import java.net.URI;
 import javax.validation.Valid;
 
 import com.ibocon.ledger.web.exception.BadRequestException;
-import com.ibocon.ledger.repository.user.LedgerUser;
+import com.ibocon.ledger.repository.user.Role;
+import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.web.dto.ApiResponse;
 import com.ibocon.ledger.web.dto.AuthResponse;
 import com.ibocon.ledger.web.dto.LoginRequest;
 import com.ibocon.ledger.web.dto.SignUpRequest;
-import com.ibocon.ledger.repository.user.LedgerUserRepository;
+import com.ibocon.ledger.repository.user.UserRepository;
 import com.ibocon.ledger.config.auth.jwt.JwtTokenProvider;
 import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
 
@@ -34,8 +35,6 @@ import lombok.RequiredArgsConstructor;
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
-    private final LedgerUserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/login")
@@ -48,23 +47,4 @@ public class AuthController {
         String token = jwtTokenProvider.create(authentication);
         return ResponseEntity.ok(new AuthResponse(token));
     }
-    
-    @PostMapping("/signup")
-    public ResponseEntity<?> postMethodName(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            throw new BadRequestException("Email address already in use");
-        }
-
-        LedgerUser user = new LedgerUser(signUpRequest.getEmail(), OAuth2Provider.local);
-        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
-
-        user = userRepository.save(user);
-
-        URI location = ServletUriComponentsBuilder
-                        .fromCurrentContextPath().path("/user/me")
-                        .buildAndExpand(user.getId()).toUri();
-        
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
-    }
-    
 }

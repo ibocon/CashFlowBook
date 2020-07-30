@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.ibocon.ledger.repository.user.LedgerUser;
+import com.ibocon.ledger.repository.user.User;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -32,10 +32,10 @@ public class UserDefinedAccount {
     final private OfficialAccount officialAccount;
 
     @ManyToOne(
-        targetEntity = LedgerUser.class,
+        targetEntity = User.class,
         fetch = FetchType.LAZY
     )
-    private LedgerUser belongTo;
+    private User belongTo;
 
     @NotNull
     final private String accountName;

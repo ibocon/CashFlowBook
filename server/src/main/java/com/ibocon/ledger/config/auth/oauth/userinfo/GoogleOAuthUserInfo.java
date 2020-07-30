@@ -2,10 +2,12 @@ package com.ibocon.ledger.config.auth.oauth.userinfo;
 
 import java.util.Map;
 
-public class GoogleOAuth2UserInfo extends OAuth2UserInfo {
+import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
 
-    public GoogleOAuth2UserInfo(Map<String, Object> attributes) {
-        super(attributes);
+public class GoogleOAuthUserInfo extends BaseOAuthUserInfo {
+
+    public GoogleOAuthUserInfo(OAuth2Provider provider, Map<String, Object> attributes) {
+        super(provider, attributes);
     }
 
     @Override

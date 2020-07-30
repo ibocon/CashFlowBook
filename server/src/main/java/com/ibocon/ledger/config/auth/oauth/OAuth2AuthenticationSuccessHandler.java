@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ibocon.ledger.config.auth.jwt.JwtTokenProvider;
 import com.ibocon.ledger.util.OAuth2CookieUtils;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -24,8 +23,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-
-    private final JwtTokenProvider jwtTokenProvider;
     
     @Value("${ledger.redirectUri}")
     private List<String> authorizedRedirectUri;
@@ -56,9 +53,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             throw new ServletException("Unauthorized redirect URI. : " + uri);
         }
 
-        String token = jwtTokenProvider.create(authentication);
-
-        return UriComponentsBuilder.fromUriString(uri).queryParam("token", token).build().toUriString();
+        return UriComponentsBuilder.fromUriString(uri).toUriString();
     }
 
     private Boolean validateRedirectUri(URI uri) {

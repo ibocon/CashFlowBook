@@ -3,8 +3,8 @@ package com.ibocon.ledger.web.controller;
 import java.util.Optional;
 
 import com.ibocon.ledger.config.auth.CurrentUser;
-import com.ibocon.ledger.repository.user.LedgerUser;
-import com.ibocon.ledger.repository.user.LedgerUserRepository;
+import com.ibocon.ledger.repository.user.User;
+import com.ibocon.ledger.repository.user.UserRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(path="/user", produces="application/json")
 public class UserController {
 
-    private final LedgerUserRepository userRepository;
+    private final UserRepository userRepository;
 
     @GetMapping("/me")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> profile(@CurrentUser LedgerUser user) {
-        Optional<LedgerUser> userOptional = userRepository.findById(user.getId());
+    public ResponseEntity<?> profile(@CurrentUser User user) {
+        Optional<User> userOptional = userRepository.findById(user.getId());
         if(userOptional.isPresent()) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }

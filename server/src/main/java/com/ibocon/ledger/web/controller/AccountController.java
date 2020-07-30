@@ -5,7 +5,7 @@ import java.util.List;
 import com.ibocon.ledger.config.auth.CurrentUser;
 import com.ibocon.ledger.repository.account.UserDefinedAccount;
 import com.ibocon.ledger.repository.account.UserDefinedAccountRepository;
-import com.ibocon.ledger.repository.user.LedgerUser;
+import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.web.dto.AccountRequest;
 
 import org.springframework.http.HttpStatus;
@@ -28,20 +28,20 @@ public class AccountController {
     private final UserDefinedAccountRepository accountRepository;
 
     @GetMapping
-    public ResponseEntity<?> read(@CurrentUser LedgerUser user) {
+    public ResponseEntity<?> read(@CurrentUser User user) {
         List<UserDefinedAccount> accounts = accountRepository.findByBelongTo(user);
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@CurrentUser LedgerUser user, @RequestBody AccountRequest accountRequest ) {
+    public ResponseEntity<?> create(@CurrentUser User user, @RequestBody AccountRequest accountRequest ) {
         UserDefinedAccount account = new UserDefinedAccount(accountRequest.getOfficialAccount(), accountRequest.getAccountName());
         account = accountRepository.save(account);
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@CurrentUser LedgerUser user, @RequestBody AccountRequest accountRequest) {
+    public ResponseEntity<?> update(@CurrentUser User user, @RequestBody AccountRequest accountRequest) {
         List<UserDefinedAccount> optionalAccount = accountRepository.findByBelongToAndAccountName(user, accountRequest.getAccountName());
         if(!optionalAccount.isEmpty()){
             UserDefinedAccount account = optionalAccount.get(0);
