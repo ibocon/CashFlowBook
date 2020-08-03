@@ -33,26 +33,26 @@ public class AccountController {
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<?> create(@CurrentUser User user, @RequestBody AccountRequest accountRequest ) {
-        UserDefinedAccount account = new UserDefinedAccount(accountRequest.getOfficialAccount(), accountRequest.getAccountName());
-        account = accountRepository.save(account);
-        return new ResponseEntity<>(account, HttpStatus.CREATED);
-    }
+    // @PostMapping
+    // public ResponseEntity<?> create(@CurrentUser User user, @RequestBody AccountRequest accountRequest ) {
+    //     UserDefinedAccount account = new UserDefinedAccount(accountRequest.getOfficialAccount(), accountRequest.getAccountName());
+    //     account = accountRepository.save(account);
+    //     return new ResponseEntity<>(account, HttpStatus.CREATED);
+    // }
 
-    @PutMapping
-    public ResponseEntity<?> update(@CurrentUser User user, @RequestBody AccountRequest accountRequest) {
-        List<UserDefinedAccount> optionalAccount = accountRepository.findByBelongToAndAccountName(user, accountRequest.getAccountName());
-        if(!optionalAccount.isEmpty()){
-            UserDefinedAccount account = optionalAccount.get(0);
-            // TODO 계정 정보를 업데이트하자.
-            account = accountRepository.save(account);
+    // @PutMapping
+    // public ResponseEntity<?> update(@CurrentUser User user, @RequestBody AccountRequest accountRequest) {
+    //     List<UserDefinedAccount> optionalAccount = accountRepository.findByBelongToAndAccountName(user, accountRequest.getAccountName());
+    //     if(!optionalAccount.isEmpty()){
+    //         UserDefinedAccount account = optionalAccount.get(0);
+    //         // TODO 계정 정보를 업데이트하자.
+    //         account = accountRepository.save(account);
 
-            return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
-        }else{
-            return ResponseEntity.notFound().build();
-        }
-    }
+    //         return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
+    //     }else{
+    //         return ResponseEntity.notFound().build();
+    //     }
+    // }
 
     // @DeleteMapping
     // public ResponseEntity<?> delete(@CurrentUser LedgerUser user, @RequestBody AccountRequest accountRequest) {

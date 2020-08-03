@@ -1,5 +1,6 @@
 package com.ibocon.ledger.repository.user;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +11,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
+import com.ibocon.ledger.repository.account.UserDefinedAccount;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,24 +31,23 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @Entity
-@Table(name="USER", uniqueConstraints = {
+@Table(uniqueConstraints = {
     @UniqueConstraint(
         name = "EMAIL_UNIQUE",
         columnNames = {"EMAIL"})})
 public class User implements OAuth2User {
 
-    @Id 
+    @Id
     @GeneratedValue
-    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "ROLE", nullable = false)
+    @Column(nullable = false)
     private final Role role;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(nullable = false)
     final private String email;
 
-    @Column(name = "NAME", nullable = true)
+    @Column(nullable = true)
     private String name;
     @Override
     public String getName() {
@@ -55,11 +57,11 @@ public class User implements OAuth2User {
         this.name = name;
     }
 
-    @Column(name = "PROVIDER", nullable = false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     final private OAuth2Provider provider;
 
-    @Column(name = "IMAGE_URL", nullable = true)
+    @Column(nullable = true)
     private String imageUrl;
 
     public void setImageUrl(final String url) {
@@ -68,6 +70,9 @@ public class User implements OAuth2User {
 
     @Transient
     private Map<String, Object> attributes;
+
+    @OneToMany(mappedBy = "belongTo")
+    private List<UserDefinedAccount> userDefinedAccounts = new ArrayList<UserDefinedAccount>();
 
     @Builder
     public User(Role role, String email, OAuth2Provider provider, String name, String imageUrl) {
@@ -85,10 +90,4 @@ public class User implements OAuth2User {
 
         return this;
     }
-    // @OneToMany(
-    //     targetEntity = UserDefinedAccount.class, 
-    //     cascade = CascadeType.ALL, 
-    //     fetch = FetchType.LAZY
-    // )
-    // private List<UserDefinedAccount> userDefinedAccounts;
 }

@@ -1,43 +1,41 @@
 package com.ibocon.ledger.repository.account;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 import com.ibocon.ledger.repository.user.User;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-@RequiredArgsConstructor()
 @Entity
 public class UserDefinedAccount {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
+ 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private OfficialAccount officialLink;
 
-    @NotNull
-    @ManyToOne(
-        targetEntity = OfficialAccount.class,
-        fetch = FetchType.LAZY
-    )
-    final private OfficialAccount officialAccount;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    final private User belongTo;
 
-    @ManyToOne(
-        targetEntity = User.class,
-        fetch = FetchType.LAZY
-    )
-    private User belongTo;
+    @Column(nullable = false)
+    private String accountName;
 
-    @NotNull
-    final private String accountName;
-
+    @Builder
+    public UserDefinedAccount(User belongTo, OfficialAccount officialLink, String accountName) {
+        this.belongTo = belongTo; this.officialLink = officialLink; this.accountName = accountName;
+    }
 }

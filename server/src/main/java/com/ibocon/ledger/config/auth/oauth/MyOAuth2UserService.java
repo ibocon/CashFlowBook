@@ -57,7 +57,7 @@ public class MyOAuth2UserService extends DefaultOAuth2UserService {
                 + user.getProvider() + "로 다시 로그인해주시길 바랍니다");
             }
 
-            httpSession.setAttribute("user", new SessionUser(user));
+            //httpSession.setAttribute("user", new SessionUser(user));
             return user;
         } catch (AuthenticationException exception) {
             throw exception;

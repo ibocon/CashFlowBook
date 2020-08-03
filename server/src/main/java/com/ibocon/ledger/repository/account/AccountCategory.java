@@ -1,14 +1,11 @@
 package com.ibocon.ledger.repository.account;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
-import com.ibocon.ledger.repository.TranslatedName;
+import com.ibocon.ledger.repository.TranslatedString;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,18 +17,12 @@ import lombok.NoArgsConstructor;
 public class AccountCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    @NotNull
-    @ManyToOne(
-        targetEntity = TranslatedName.class, 
-        fetch = FetchType.LAZY)
-    private TranslatedName main;
-    
-    @NotNull
-    @ManyToOne(
-        targetEntity = TranslatedName.class, 
-        fetch = FetchType.LAZY)
-    private TranslatedName sub;
+    @ManyToOne
+    private TranslatedString main;
+
+    @ManyToOne
+    private TranslatedString sub;
 }
