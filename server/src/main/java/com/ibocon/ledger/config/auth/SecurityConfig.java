@@ -1,6 +1,8 @@
 package com.ibocon.ledger.config.auth;
 
 import com.ibocon.ledger.config.auth.oauth.MyOAuth2UserService;
+import com.ibocon.ledger.config.auth.oauth.OAuthFailureHandler;
+import com.ibocon.ledger.config.auth.oauth.OAuthSuccessHandler;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
+// https://docs.spring.io/spring-security/site/docs/5.4.0-M1/reference/html5/#enableglobalmethodsecurity
 // @Secured, @RolesAllowed, @PreAuthorize, @PostAuthorize
 @EnableGlobalMethodSecurity(
         securedEnabled = true,
@@ -24,10 +28,17 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final MyOAuth2UserService myOauth2UserService;
+    private final OAuthSuccessHandler oauthSuccessHandler;
+    private final OAuthFailureHandler oauthFailureHandler;
 
     @Bean
-    public HttpSessionOAuth2AuthorizationRequestRepository httpSessionOAuth2AuthorizationRequestRepository() throws Exception {
+    public HttpSessionOAuth2AuthorizationRequestRepository httpSessionOAuth2AuthorizationRequestRepository() {
         return new HttpSessionOAuth2AuthorizationRequestRepository();
+    }
+
+    @Bean
+    public SimpleAuthorityMapper simpleAuthorityMapper() {
+        return new SimpleAuthorityMapper();
     }
 
     @Override
@@ -40,21 +51,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // H2 CConsole 접속에 필요
             .headers().frameOptions().disable()
         .and()
-            .authorizeRequests()
+            .authorizeRequests(authorize -> authorize
                 .antMatchers("/h2-console/**").permitAll() //H2 Console 접속 시 필요
                 .anyRequest().authenticated()
-        .and()
-            // https://docs.spring.io/spring-security/site/docs/5.4.0-M1/reference/html5/#oauth2login
-            .oauth2Login()
-                .authorizationEndpoint()
+            )
+            // https://docs.spring.io/spring-security/site/docs/5.4.0-M1/reference/html5/#oauth2login-advanced
+            .oauth2Login(oauth2 -> oauth2
+                .authorizationEndpoint(authorization -> authorization
                     .baseUri("/oauth2/authorize")
                     .authorizationRequestRepository(httpSessionOAuth2AuthorizationRequestRepository())
-            .and()
-                .redirectionEndpoint()
+                )
+                .redirectionEndpoint(redirection -> redirection
                     .baseUri("/oauth2/callback/*")
-            .and()
-                .userInfoEndpoint()
+                )
+                .userInfoEndpoint(userInfo -> userInfo
+                    .userAuthoritiesMapper(simpleAuthorityMapper())
                     .userService(myOauth2UserService)
+                )
+                .successHandler(oauthSuccessHandler)
+                .failureHandler(oauthFailureHandler)
+            )
+
         ;
     }
 }

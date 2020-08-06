@@ -1,15 +1,11 @@
 package com.ibocon.ledger.config.auth.oauth;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpSession;
-
-import com.ibocon.ledger.config.auth.oauth.userinfo.GoogleOAuthUserInfo;
 import com.ibocon.ledger.config.auth.oauth.userinfo.BaseOAuthUserInfo;
-import com.ibocon.ledger.repository.user.Role;
+import com.ibocon.ledger.config.auth.oauth.userinfo.GoogleOAuthUserInfo;
 import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.repository.user.UserRepository;
 
@@ -21,7 +17,6 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +27,6 @@ public class MyOAuth2UserService extends DefaultOAuth2UserService {
     private static final String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
 
     private final UserRepository userRepository;
-    private final HttpSession httpSession;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -57,12 +51,10 @@ public class MyOAuth2UserService extends DefaultOAuth2UserService {
                 + user.getProvider() + "로 다시 로그인해주시길 바랍니다");
             }
 
-            //httpSession.setAttribute("user", new SessionUser(user));
             return user;
         } catch (AuthenticationException exception) {
             throw exception;
         } catch (Exception exception) {
-            // Throwing an instance of AuthenticationException will trigger the OAuth2AuthenticationFailureHandler
             throw new InternalAuthenticationServiceException(exception.getMessage(), exception.getCause());
         }
     }
