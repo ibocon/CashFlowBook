@@ -1,4 +1,4 @@
-import { ActionConstant, UrlConstant } from '../constant'
+import { ActionConstant } from '../constant'
 import { userService } from '../service'
 
 export const UserAction = {
@@ -7,17 +7,11 @@ export const UserAction = {
     },
     
     logout() {
-        localStorage.removeItem(UrlConstant.ACCESS_TOKEN);
         const user = {};
         return {type: ActionConstant.LOGOUT, user }
     },
-    
-    getCurrentUserAsync() {
-        function getCurrentUser(user) {return {type: ActionConstant.GET_CURRENT_USER, user} }
-    
-        return async dispatch => {
-            const user = await userService.getCurrentUser();
-            dispatch(getCurrentUser(user));
-        }
-    }   
+
+    SetCurrentUser(user) {
+        return {type: ActionConstant.SET_CURRENT_USER, user}
+    },
 }

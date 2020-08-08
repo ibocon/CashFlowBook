@@ -21,10 +21,10 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
         
-        var debug = request.getSession().getAttributeNames();
-        var redirectUriString = Utilities.getRedirectUri(request);
+        var redirectUriString = "http://localhost:8080/oauth2/redirect";
         if(Utilities.IsAuthorizedRedirectUri(redirectUriString)) {
             getRedirectStrategy().sendRedirect(request, response, redirectUriString);
+            return;
         }
 
         throw new ServletException(redirectUriString + "는 허가되지 않은 redirect uri 입니다.");

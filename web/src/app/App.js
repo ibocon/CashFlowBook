@@ -8,7 +8,7 @@ import { Layout, Breadcrumb } from 'antd'
 import 'antd/dist/antd.css'
 
 import { UserAction } from '../action'
-import { UrlConstant } from '../constant'
+import { userService } from '../service'
 
 import { 
   PrivateRoute, OAuth2RedirectHandler,
@@ -24,7 +24,7 @@ const { Content, Footer } = Layout
 class _App extends React.Component {
 
   componentDidMount() {
-    this.props.loadCurrentUser()
+    this.props.loadCurrentUser();
   }
 
   render() {
@@ -59,10 +59,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    loadCurrentUser: () => {
-      if(localStorage.getItem(UrlConstant.ACCESS_TOKEN)) {
-        dispatch(UserAction.getCurrentUserAsync());
-      } 
+    loadCurrentUser: async () => {
+      const user = await userService.getCurrentUser();
+      dispatch(UserAction.SetCurrentUser(user));
     }
 })
 

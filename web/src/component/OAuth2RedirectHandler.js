@@ -1,5 +1,4 @@
 import React from 'react'
-import { UrlConstant } from '../constant'
 import { Redirect } from 'react-router-dom'
 
 class OAuth2RedirectHandler extends React.Component {
@@ -12,16 +11,9 @@ class OAuth2RedirectHandler extends React.Component {
     };
 
     render() {        
-        const token = this.getUrlParameter('token');
         const error = this.getUrlParameter('error');
 
-        if(token) {
-            localStorage.setItem(UrlConstant.ACCESS_TOKEN, token);
-            return <Redirect to={{
-                pathname: "/profile",
-                state: { from: this.props.location }
-            }}/>;
-        } else {
+        if(error) {
             return <Redirect to={{
                 pathname: "/login",
                 state: { 
@@ -29,6 +21,11 @@ class OAuth2RedirectHandler extends React.Component {
                     error: error 
                 }
             }}/>; 
+        } else {
+            return <Redirect to={{
+                pathname: "/profile",
+                state: { from: this.props.location }
+            }}/>;
         }
     }
 }

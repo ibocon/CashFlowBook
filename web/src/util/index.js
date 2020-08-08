@@ -1,5 +1,3 @@
-import { UrlConstant } from '../constant'
-
 export function isEmpty(object) {
     for(var key in object) {
         if(object.hasOwnProperty(key)) {
@@ -15,17 +13,11 @@ export async function request(options) {
         'Content-Type': 'application/json',
     })
 
-    if(localStorage.getItem(UrlConstant.ACCESS_TOKEN)) {
-        headers.append('Authorization', 'Bearer ' + localStorage.getItem(UrlConstant.ACCESS_TOKEN))
-    }
-    else {
-        return Promise.reject("No access token set.");
-    }
-
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
 
     try {
+        console.log(typeof options);
         const response = await fetch(options.url, options);
         const json = await response.json();
         if(response.ok){
