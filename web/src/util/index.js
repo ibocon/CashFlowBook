@@ -17,7 +17,7 @@ export async function request(options) {
     options = Object.assign({}, defaults, options);
 
     try {
-        console.log(typeof options);
+        console.log(options);
         const response = await fetch(options.url, options);
         const json = await response.json();
         if(response.ok){

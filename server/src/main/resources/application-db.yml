@@ -6,7 +6,7 @@ spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 spring.jpa.open-in-view: false
 
 # Session 데이터를 DB에 저장
-spring.session.store-type: jdbc
+# spring.session.store-type: jdbc
 
 # H2 database 콘솔 활성화
 spring.h2.console.enabled: true

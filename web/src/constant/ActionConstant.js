@@ -1,6 +1,6 @@
 export const ActionConstant = {
     // GET_USERS: 'GET_USERS',
-    SET_CURRENT_USER: 'GET_CURRENT_USER',
+    SET_CURRENT_USER: 'SET_CURRENT_USER',
     LOGIN: 'LOGIN',
     LOGOUT: 'LOGOUT',
     GET_ACCOUNTS: 'GET_ACCOUNTS',

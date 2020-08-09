@@ -1,5 +1,4 @@
 import { ActionConstant } from '../constant'
-import { userService } from '../service'
 
 export const UserAction = {
     login() {

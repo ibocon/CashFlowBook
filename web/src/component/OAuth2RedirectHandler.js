@@ -10,7 +10,7 @@ class OAuth2RedirectHandler extends React.Component {
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    render() {        
+    render() {
         const error = this.getUrlParameter('error');
 
         if(error) {

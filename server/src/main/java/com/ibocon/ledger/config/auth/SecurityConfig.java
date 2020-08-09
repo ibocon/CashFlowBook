@@ -1,5 +1,7 @@
 package com.ibocon.ledger.config.auth;
 
+import com.ibocon.ledger.config.auth.jwt.JwtAuthenticationFilter;
+import com.ibocon.ledger.config.auth.oauth.CookieOAuth2AuthorizationRequestRepository;
 import com.ibocon.ledger.config.auth.oauth.MyOAuth2UserService;
 import com.ibocon.ledger.config.auth.oauth.OAuthFailureHandler;
 import com.ibocon.ledger.config.auth.oauth.OAuthSuccessHandler;
@@ -10,8 +12,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
+import org.springframework.security.oauth2.client.OAuth2AuthorizationFailureHandler;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthorizationCodeAuthenticationProvider;
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,23 +37,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final MyOAuth2UserService myOauth2UserService;
     private final OAuthSuccessHandler oauthSuccessHandler;
     private final OAuthFailureHandler oauthFailureHandler;
-
-    @Bean
-    public HttpSessionOAuth2AuthorizationRequestRepository httpSessionOAuth2AuthorizationRequestRepository() {
-        return new HttpSessionOAuth2AuthorizationRequestRepository();
-    }
-
-    @Bean
-    public SimpleAuthorityMapper simpleAuthorityMapper() {
-        return new SimpleAuthorityMapper();
-    }
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
 
     @Override
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+            // Cross-Origin Resource Sharing (CORS)
             .cors()
         .and()
-            // Cross-Site Request Forgery 크로스 사이트 요청 위조 공격 방어
+            // Stateless 서버
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+            // OAuth2 로그인 이외 Disable
+            .formLogin().disable().httpBasic().disable()
+            // Cross-Site Request Forgery
             .csrf().disable()
             // H2 CConsole 접속에 필요
             .headers().frameOptions().disable()
@@ -59,19 +64,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .oauth2Login(oauth2 -> oauth2
                 .authorizationEndpoint(authorization -> authorization
                     .baseUri("/oauth2/authorize")
-                    .authorizationRequestRepository(httpSessionOAuth2AuthorizationRequestRepository())
+                    .authorizationRequestRepository(cookieOAuth2AuthorizationRequestRepository)
                 )
                 .redirectionEndpoint(redirection -> redirection
                     .baseUri("/oauth2/callback/*")
                 )
                 .userInfoEndpoint(userInfo -> userInfo
-                    .userAuthoritiesMapper(simpleAuthorityMapper())
                     .userService(myOauth2UserService)
                 )
                 .successHandler(oauthSuccessHandler)
                 .failureHandler(oauthFailureHandler)
             )
-
         ;
+
+        httpSecurity.addFilterBefore(jwtAuthenticationFilter, OAuth2LoginAuthenticationFilter.class);
     }
 }

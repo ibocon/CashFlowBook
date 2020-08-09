@@ -19,39 +19,42 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.var;
 
 @RequiredArgsConstructor
 @Service
 public class MyOAuth2UserService extends DefaultOAuth2UserService {
 
     private static final String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-
     private final UserRepository userRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        OAuth2User oAuth2User = super.loadUser(userRequest);
-                                        
-        try {
-            String registrationId = userRequest.getClientRegistration().getRegistrationId();
-            OAuth2Provider accessedProvider = OAuth2Provider.valueOf(registrationId);
 
-            BaseOAuthUserInfo oAuth2UserInfo = getOAuth2UserInfo(accessedProvider, oAuth2User.getAttributes());
+        // DefaultOAuth2UserSerive 로 request 에서 OAuth2User 객체 생성
+        var oAuth2User = super.loadUser(userRequest);
+
+        try {
+            var registrationId = userRequest.getClientRegistration().getRegistrationId();
+            var provider = OAuth2Provider.valueOf(registrationId);
+
+            var oAuth2UserInfo = getOAuth2UserInfo(provider, oAuth2User.getAttributes());
             
             if(!isValidEmail(oAuth2UserInfo.getEmail())) {
                 throw new OAuth2AuthenticationException(new OAuth2Error("400"), 
                 oAuth2UserInfo.getEmail() + "은 올바른 이메일 형식이 아닙니다.");
             }
 
-            User user = saveOrUpdate(oAuth2UserInfo);
+            var user = saveOrUpdate(oAuth2UserInfo);
 
-            if(!accessedProvider.equals(user.getProvider())) {
+            if(!provider.equals(user.getProvider())) {
                 throw new OAuth2AuthenticationException(new OAuth2Error("400"), 
-                "로그인은 " + accessedProvider + "로 하셨지만, 등록은 " + user.getProvider() + "로 진행하셨습니다."
+                "로그인은 " + provider + "로 하셨지만, 등록은 " + user.getProvider() + "로 진행하셨습니다."
                 + user.getProvider() + "로 다시 로그인해주시길 바랍니다");
             }
 
             return user;
+
         } catch (AuthenticationException exception) {
             throw exception;
         } catch (Exception exception) {

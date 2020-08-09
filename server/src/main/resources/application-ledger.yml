@@ -1,1 +1,8 @@
 # Ledger
+
+ledger:
+    jwt:
+        secret: ${SECRET}
+        expire: 86400000
+    redirectUris:
+        - http://localhost:8080/oauth2/redirect
