@@ -57,6 +57,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     logout: () => {
+        localStorage.removeItem(UrlConstant.ACCESS_TOKEN);
         dispatch(UserAction.logout());
     }
 })

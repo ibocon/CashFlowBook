@@ -6,6 +6,7 @@ import com.ibocon.ledger.config.auth.CurrentUser;
 import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.repository.user.UserRepository;
 
+import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +30,7 @@ public class UserController {
     public ResponseEntity<?> profile(@CurrentUser User user) {
         Optional<User> userOptional = userRepository.findById(user.getId());
         if(userOptional.isPresent()) {
+            Hibernate.initialize(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
         else {

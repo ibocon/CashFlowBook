@@ -6,19 +6,13 @@ import com.ibocon.ledger.config.auth.oauth.MyOAuth2UserService;
 import com.ibocon.ledger.config.auth.oauth.OAuthFailureHandler;
 import com.ibocon.ledger.config.auth.oauth.OAuthSuccessHandler;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
-import org.springframework.security.oauth2.client.OAuth2AuthorizationFailureHandler;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthorizationCodeAuthenticationProvider;
-import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final OAuthFailureHandler oauthFailureHandler;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository;
+    private final MyAuthenticationEntryPoint myAuthenticationEntryPoint;
 
     @Override
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
@@ -56,6 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // H2 CConsole 접속에 필요
             .headers().frameOptions().disable()
         .and()
+            .exceptionHandling( exceptionHandling -> exceptionHandling
+                .authenticationEntryPoint(myAuthenticationEntryPoint)
+            )
             .authorizeRequests(authorize -> authorize
                 .antMatchers("/h2-console/**").permitAll() //H2 Console 접속에 필요
                 .anyRequest().authenticated()
