@@ -8,6 +8,7 @@ class _Profile extends React.Component {
     render() {
         const { user } = this.props;
 
+        console.log("[DEBUG] " + user);
         if(isEmpty(user)) {
             return (            
                 <Redirect

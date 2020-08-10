@@ -12,6 +12,17 @@ class OAuth2RedirectHandler extends React.Component {
     };
 
     render() {
+        const error = this.getUrlParameter('error');
+        if(error){
+            return <Redirect to={{
+                pathname: "/error",
+                state: { 
+                    from: this.props.location,
+                    error: error 
+                }
+            }}/>
+        }
+
         const token = this.getUrlParameter('token');
         if(token) {
             localStorage.setItem(UrlConstant.ACCESS_TOKEN, token)
@@ -20,13 +31,9 @@ class OAuth2RedirectHandler extends React.Component {
                 state: { from: this.props.location }
             }}/>
         } else {
-            const error = this.getUrlParameter('error');
             return <Redirect to={{
-                pathname: "/login",
-                state: { 
-                    from: this.props.location,
-                    error: error 
-                }
+                pathname: "/",
+                state: { from: this.props.location }
             }}/>
         }
     }

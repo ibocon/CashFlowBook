@@ -1,5 +1,6 @@
 package com.ibocon.ledger.web.controller;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.Optional;
 
 import com.ibocon.ledger.config.auth.CurrentUser;
@@ -28,9 +29,8 @@ public class UserController {
     @GetMapping("/me")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> profile(@CurrentUser User user) {
-        Optional<User> userOptional = userRepository.findById(user.getId());
+        var userOptional = userRepository.findById(user.getId());
         if(userOptional.isPresent()) {
-            Hibernate.initialize(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
         else {
