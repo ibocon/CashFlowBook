@@ -17,12 +17,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(uniqueConstraints = {
     @UniqueConstraint(
-        name = "ENGLISH_KOREAN_UNIQUE",
-        columnNames = {"ENGLISH", "KOREAN"})})
+        name = "ENGLISH_UNIQUE",
+        columnNames = {"ENGLISH"}),
+    })
 public class TranslatedString {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
