@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -43,6 +42,7 @@ public class User implements OAuth2User {
     @GeneratedValue
     private Long id;
 
+    @JsonIgnore
     @Column(nullable = false)
     private final Role role;
 
@@ -70,6 +70,7 @@ public class User implements OAuth2User {
         imageUrl = url;
     }
 
+    @JsonIgnore
     @Transient
     private Map<String, Object> attributes;
 

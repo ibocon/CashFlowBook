@@ -15,7 +15,7 @@ import {
 } from '../component'
 
 import {
-  Home, MyHeader, MySider, Profile, AccountList, ErrorView
+  Home, MyHeader, MySider, ProfileView, AccountList, ErrorView
 } from '../view'
 
 import './App.sass'
@@ -41,7 +41,7 @@ class _App extends React.Component {
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
               <Switch>
                 <Route exact path="/" component={Home} />
-                <PrivateRoute path="/profile" component={Profile} />
+                <PrivateRoute path="/profile" component={ProfileView} />
                 <PrivateRoute path="/account" component={AccountList} />
                 <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
                 <Route path="/error" component={ErrorView} />

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Redirect } from "react-router"
 import { isEmpty } from '../util'
 
-class _Profile extends React.Component {
+class _ProfileView extends React.Component {
 
     render() {
         const { user } = this.props;
@@ -40,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
 
 })
 
-export const Profile = withRouter(connect(mapStateToProps, mapDispatchToProps)(_Profile))
+export const ProfileView = withRouter(connect(mapStateToProps, mapDispatchToProps)(_ProfileView))

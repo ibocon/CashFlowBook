@@ -38,13 +38,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (StringUtils.hasText(jwt) && jwtTokenProvider.validate(jwt)) {
                 Long userId = jwtTokenProvider.getUserID(jwt);
                 var user = userService.getUserById(userId);
-                var authentication = new OAuth2AuthenticationToken(user, user.getAuthorities(),  user.getProvider().toString());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                if(user != null) {
+                    var authentication = new OAuth2AuthenticationToken(user, user.getAuthorities(),  user.getProvider().toString());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+    
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-        } catch (NotFoundException ex) {
-            log.error(ex.getMessage(), ex);
         } catch (Exception ex) {
             log.error("security context 에 인증정보를 설정할 수 없습니다.", ex);
         }

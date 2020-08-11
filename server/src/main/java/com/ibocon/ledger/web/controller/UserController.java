@@ -1,13 +1,9 @@
 package com.ibocon.ledger.web.controller;
 
-import java.nio.file.attribute.UserPrincipal;
-import java.util.Optional;
-
 import com.ibocon.ledger.config.auth.CurrentUser;
 import com.ibocon.ledger.repository.user.User;
-import com.ibocon.ledger.repository.user.UserRepository;
+import com.ibocon.ledger.repository.user.UserSerivce;
 
-import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,13 +20,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(path="/user", produces="application/json")
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserSerivce userSerivce;
 
     @GetMapping("/me")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> profile(@CurrentUser User user) {
-        var userOptional = userRepository.findById(user.getId());
-        if(userOptional.isPresent()) {
+        if(userSerivce.isUserExist(user.getId())) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
         else {
