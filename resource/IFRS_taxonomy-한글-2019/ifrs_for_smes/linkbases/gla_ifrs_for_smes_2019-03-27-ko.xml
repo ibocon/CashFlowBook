@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!--
+        Translation: IFRS Taxonomy 2019 in Korean
+		**********************
+		Copyright (c) 2020 IFRS Foundation
+		All rights reserved. Reproduction and use rights are strictly limited.
+		For more information on the IFRS Foundation's copyright and the terms and conditions of use for these files, please refer to http://go.ifrs.org/IFRSTterms.
+		The IFRS Foundation has trade marks registered around the world (Marks) including 'IAS', 'IASB', the IASB logo, 'IFRIC', 'IFRS', the IFRS logo, 'IFRS for SMEs', the IFRS for SMEs logo, the 'Hexagon Device', 'International Accounting Standards', 'International Financial Reporting Standards', 'NIIF' and 'SIC'. Further details of the IFRS Foundation's Marks are available from the IFRS Foundation on request.
+		**********************
+--><link:linkbase xmlns:gen="http://xbrl.org/2008/generic" xmlns:label="http://xbrl.org/2008/label" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd http://xbrl.org/2008/label http://www.xbrl.org/2008/generic-label.xsd http://xbrl.org/2008/generic http://www.xbrl.org/2008/generic-link.xsd http://www.w3.org/1999/xlink http://www.xbrl.org/2003/xlink-2003-12-31.xsd">
+  <link:roleRef roleURI="http://www.xbrl.org/2008/role/link" xlink:href="http://www.xbrl.org/2008/generic-link.xsd#standard-link-role" xlink:type="simple"/>
+  <link:roleRef roleURI="http://www.xbrl.org/2008/role/label" xlink:href="http://www.xbrl.org/2008/generic-label.xsd#standard-label" xlink:type="simple"/>
+  <link:arcroleRef arcroleURI="http://xbrl.org/arcrole/2008/element-label" xlink:href="http://www.xbrl.org/2008/generic-label.xsd#element-label" xlink:type="simple"/>
+  <gen:link xlink:role="http://www.xbrl.org/2008/role/link" xlink:type="extended">
+    <label:label xlink:label="res_1" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[110000] 재무제표에 대한 일반정보</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-110000" xlink:label="loc_1" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_1" xlink:to="res_1" xlink:type="arc"/>
+    <label:label xlink:label="res_2" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[210000] 재무상태표, 유동/비유동법</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-210000" xlink:label="loc_2" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_2" xlink:to="res_2" xlink:type="arc"/>
+    <label:label xlink:label="res_3" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[220000] 재무상태표, 유동성배열법</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-220000" xlink:label="loc_3" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_3" xlink:to="res_3" xlink:type="arc"/>
+    <label:label xlink:label="res_4" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[310000] 손익계산서 - 기능별분류</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-310000" xlink:label="loc_4" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_4" xlink:to="res_4" xlink:type="arc"/>
+    <label:label xlink:label="res_5" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[320000] 손익계산서 - 성격별분류</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-320000" xlink:label="loc_5" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_5" xlink:to="res_5" xlink:type="arc"/>
+    <label:label xlink:label="res_6" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[410000] 포괄손익계산서, 세후로 표시된 OCI 구성요소</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-410000" xlink:label="loc_6" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_6" xlink:to="res_6" xlink:type="arc"/>
+    <label:label xlink:label="res_7" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[420000] 포괄손익계산서, 세전으로 표시된 OCI 구성요소</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-420000" xlink:label="loc_7" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_7" xlink:to="res_7" xlink:type="arc"/>
+    <label:label xlink:label="res_8" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[510000] 현금흐름표, 직접법</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-510000" xlink:label="loc_8" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_8" xlink:to="res_8" xlink:type="arc"/>
+    <label:label xlink:label="res_9" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[520000] 현금흐름표, 간접법</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-520000" xlink:label="loc_9" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_9" xlink:to="res_9" xlink:type="arc"/>
+    <label:label xlink:label="res_10" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[610000] 자본변동표</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-610000" xlink:label="loc_10" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_10" xlink:to="res_10" xlink:type="arc"/>
+    <label:label xlink:label="res_11" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[650000] 이익 및 이익잉여금계산서</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-650000" xlink:label="loc_11" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_11" xlink:to="res_11" xlink:type="arc"/>
+    <label:label xlink:label="res_12" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[810000] 주석 - 기업정보와 한국채택국제회계기준을 적용하여 작성된 재무제표</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-810000" xlink:label="loc_12" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_12" xlink:to="res_12" xlink:type="arc"/>
+    <label:label xlink:label="res_13" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[810000a] 주석 - 기업정보와 한국채택국제회계기준을 적용하여 작성된 재무제표</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-810000a" xlink:label="loc_13" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_13" xlink:to="res_13" xlink:type="arc"/>
+    <label:label xlink:label="res_14" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[811000] 주석 - 회계정책, 회계추정의 변경 및 오류에 대한 공시</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-811000" xlink:label="loc_14" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_14" xlink:to="res_14" xlink:type="arc"/>
+    <label:label xlink:label="res_15" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[815000] 주석 - 보고기간 후 사건</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-815000" xlink:label="loc_15" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_15" xlink:to="res_15" xlink:type="arc"/>
+    <label:label xlink:label="res_16" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[816000] 주석 - 초인플레이션 경제에서의 재무보고</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-816000" xlink:label="loc_16" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_16" xlink:to="res_16" xlink:type="arc"/>
+    <label:label xlink:label="res_17" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[817000] 주석 - 사업결합</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-817000" xlink:label="loc_17" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_17" xlink:to="res_17" xlink:type="arc"/>
+    <label:label xlink:label="res_18" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[818000] 주석 - 특수관계자</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-818000" xlink:label="loc_18" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_18" xlink:to="res_18" xlink:type="arc"/>
+    <label:label xlink:label="res_19" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[819100] 주석 - 최초채택</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-819100" xlink:label="loc_19" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_19" xlink:to="res_19" xlink:type="arc"/>
+    <label:label xlink:label="res_20" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[822100] 주석 - 유형자산</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-822100" xlink:label="loc_20" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_20" xlink:to="res_20" xlink:type="arc"/>
+    <label:label xlink:label="res_21" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[822390] 주석 - 금융상품</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-822390" xlink:label="loc_21" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_21" xlink:to="res_21" xlink:type="arc"/>
+    <label:label xlink:label="res_22" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[822390a] 주석 - 금융상품</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-822390a" xlink:label="loc_22" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_22" xlink:to="res_22" xlink:type="arc"/>
+    <label:label xlink:label="res_23" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[822390b] 주석 - 금융상품</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-822390b" xlink:label="loc_23" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_23" xlink:to="res_23" xlink:type="arc"/>
+    <label:label xlink:label="res_24" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[822390c] 주석 - 금융상품</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-822390c" xlink:label="loc_24" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_24" xlink:to="res_24" xlink:type="arc"/>
+    <label:label xlink:label="res_25" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[823180] 주석 - 무형자산</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-823180" xlink:label="loc_25" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_25" xlink:to="res_25" xlink:type="arc"/>
+    <label:label xlink:label="res_26" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[824180] 주석 - 농림어업</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-824180" xlink:label="loc_26" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_26" xlink:to="res_26" xlink:type="arc"/>
+    <label:label xlink:label="res_27" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[825100] 주석 - 투자부동산</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-825100" xlink:label="loc_27" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_27" xlink:to="res_27" xlink:type="arc"/>
+    <label:label xlink:label="res_28" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[825480] 주석 - 연결재무제표, 결합재무제표와 별도재무제표</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-825480" xlink:label="loc_28" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_28" xlink:to="res_28" xlink:type="arc"/>
+    <label:label xlink:label="res_29" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[825500] 주석 - 조인트벤처 투자지분</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-825500" xlink:label="loc_29" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_29" xlink:to="res_29" xlink:type="arc"/>
+    <label:label xlink:label="res_30" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[825600] 주석 - 관계기업에 대한 투자</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-825600" xlink:label="loc_30" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_30" xlink:to="res_30" xlink:type="arc"/>
+    <label:label xlink:label="res_31" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[825900] 주석 - 비유동자산 또는 매각예정처분자산집단</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-825900" xlink:label="loc_31" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_31" xlink:to="res_31" xlink:type="arc"/>
+    <label:label xlink:label="res_32" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[826380] 주석 - 재고자산</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-826380" xlink:label="loc_32" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_32" xlink:to="res_32" xlink:type="arc"/>
+    <label:label xlink:label="res_33" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[827570] 주석 - 기타충당부채, 우발부채 및 우발자산에 대한 주석</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-827570" xlink:label="loc_33" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_33" xlink:to="res_33" xlink:type="arc"/>
+    <label:label xlink:label="res_34" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[827570a] 주석 - 기타충당부채, 우발부채 및 우발자산에 대한 주석</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-827570a" xlink:label="loc_34" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_34" xlink:to="res_34" xlink:type="arc"/>
+    <label:label xlink:label="res_35" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[827570b] 주석 - 기타충당부채, 우발부채 및 우발자산에 대한 주석</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-827570b" xlink:label="loc_35" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_35" xlink:to="res_35" xlink:type="arc"/>
+    <label:label xlink:label="res_36" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[831110] 주석 - 수익</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-831110" xlink:label="loc_36" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_36" xlink:to="res_36" xlink:type="arc"/>
+    <label:label xlink:label="res_37" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[831400] 주석 - 정부보조금</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-831400" xlink:label="loc_37" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_37" xlink:to="res_37" xlink:type="arc"/>
+    <label:label xlink:label="res_38" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[831710] 주석 - 건설계약</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-831710" xlink:label="loc_38" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_38" xlink:to="res_38" xlink:type="arc"/>
+    <label:label xlink:label="res_39" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[800200] 주석 - 수익과 비용 분석</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-800200" xlink:label="loc_39" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_39" xlink:to="res_39" xlink:type="arc"/>
+    <label:label xlink:label="res_40" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[800100] 주석 - 자산, 부채 및 자본의 세분류</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-800100" xlink:label="loc_40" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_40" xlink:to="res_40" xlink:type="arc"/>
+    <label:label xlink:label="res_41" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[832410] 주석 - 자산손상</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-832410" xlink:label="loc_41" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_41" xlink:to="res_41" xlink:type="arc"/>
+    <label:label xlink:label="res_42" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[832600] 주석 - 리스</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-832600" xlink:label="loc_42" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_42" xlink:to="res_42" xlink:type="arc"/>
+    <label:label xlink:label="res_43" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[832600a] 주석 - 리스</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-832600a" xlink:label="loc_43" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_43" xlink:to="res_43" xlink:type="arc"/>
+    <label:label xlink:label="res_44" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[832600b] 주석 - 리스</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-832600b" xlink:label="loc_44" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_44" xlink:to="res_44" xlink:type="arc"/>
+    <label:label xlink:label="res_45" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[832600c] 주석 - 리스</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-832600c" xlink:label="loc_45" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_45" xlink:to="res_45" xlink:type="arc"/>
+    <label:label xlink:label="res_46" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[834120] 주석 - 주식기준보상</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-834120" xlink:label="loc_46" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_46" xlink:to="res_46" xlink:type="arc"/>
+    <label:label xlink:label="res_47" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[834120a] 주석 - 주식기준보상</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-834120a" xlink:label="loc_47" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_47" xlink:to="res_47" xlink:type="arc"/>
+    <label:label xlink:label="res_48" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[834480] 주석 - 종업원급여</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-834480" xlink:label="loc_48" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_48" xlink:to="res_48" xlink:type="arc"/>
+    <label:label xlink:label="res_49" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[834480a] 주석 - 종업원급여</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-834480a" xlink:label="loc_49" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_49" xlink:to="res_49" xlink:type="arc"/>
+    <label:label xlink:label="res_50" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[834480b] 주석 - 종업원급여</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-834480b" xlink:label="loc_50" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_50" xlink:to="res_50" xlink:type="arc"/>
+    <label:label xlink:label="res_51" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[835110] 주석 - 법인세</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-835110" xlink:label="loc_51" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_51" xlink:to="res_51" xlink:type="arc"/>
+    <label:label xlink:label="res_52" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[842000] 주석 - 환율변동효과</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-842000" xlink:label="loc_52" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_52" xlink:to="res_52" xlink:type="arc"/>
+    <label:label xlink:label="res_53" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[851100] 주석 - 현금흐름표</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-851100" xlink:label="loc_53" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_53" xlink:to="res_53" xlink:type="arc"/>
+    <label:label xlink:label="res_54" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[861200] 주석 - 자본금, 적립금, 기타지분</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-861200" xlink:label="loc_54" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_54" xlink:to="res_54" xlink:type="arc"/>
+    <label:label xlink:label="res_55" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[861200a] 주석 - 자본금, 적립금, 기타지분</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-861200a" xlink:label="loc_55" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_55" xlink:to="res_55" xlink:type="arc"/>
+    <label:label xlink:label="res_56" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[861200b] 주석 - 자본금, 적립금, 기타지분</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-861200b" xlink:label="loc_56" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_56" xlink:to="res_56" xlink:type="arc"/>
+    <label:label xlink:label="res_57" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[823180a] 주석 - 무형자산</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-823180a" xlink:label="loc_57" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_57" xlink:to="res_57" xlink:type="arc"/>
+    <label:label xlink:label="res_58" xlink:role="http://www.xbrl.org/2008/role/label" xlink:type="resource" xml:lang="ko">[822100a] 주석 - 유형자산</label:label>
+    <link:loc xlink:href="rol_ifrs_for_smes_2019-03-27.xsd#ifrs_for_smes_2019-03-27_role-822100a" xlink:label="loc_58" xlink:type="locator"/>
+    <gen:arc xlink:arcrole="http://xbrl.org/arcrole/2008/element-label" xlink:from="loc_58" xlink:to="res_58" xlink:type="arc"/>
+  </gen:link>
+</link:linkbase>
