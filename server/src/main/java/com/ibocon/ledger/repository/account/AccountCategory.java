@@ -22,8 +22,8 @@ public class AccountCategory {
     private Long id;
 
     @ManyToOne
-    private TranslatedString main;
+    private TranslatedString parent;
 
     @ManyToOne
-    private TranslatedString sub;
+    private TranslatedString child;
 }

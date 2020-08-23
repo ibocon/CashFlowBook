@@ -19,15 +19,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(uniqueConstraints = {
     @UniqueConstraint(
-        name = "CODE_UNIQUE",
-        columnNames = {"CODE"})})
+        name = "ACCOUNT_NAME_UNIQUE",
+        columnNames = {"ACCOUNT_NAME_ID"})})
 public class OfficialAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long code;
 
     @ManyToOne
     private AccountCategory category;

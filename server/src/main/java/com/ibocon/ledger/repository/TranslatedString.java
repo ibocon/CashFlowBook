@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(uniqueConstraints = {
     @UniqueConstraint(
-        name = "ENGLISH_UNIQUE",
-        columnNames = {"ENGLISH"}),
+        name = "KOREAN_UNIQUE",
+        columnNames = {"KOREAN"}),
     })
 public class TranslatedString {
     
@@ -27,8 +27,7 @@ public class TranslatedString {
     private Long id;
 
     @Column(nullable = false)
-    final private String english;
-
-    @Column(nullable = false)
     final private String korean;
+
+    private String english;
 }
