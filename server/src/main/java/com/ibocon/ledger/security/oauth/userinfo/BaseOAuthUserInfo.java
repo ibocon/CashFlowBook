@@ -1,10 +1,10 @@
 package com.ibocon.ledger.security.oauth.userinfo;
 
-import java.util.Map;
-
-import com.ibocon.ledger.security.oauth.OAuth2Provider;
 import com.ibocon.ledger.repository.user.Role;
 import com.ibocon.ledger.repository.user.User;
+import com.ibocon.ledger.security.oauth.OAuth2Provider;
+
+import java.util.Map;
 
 public abstract class BaseOAuthUserInfo {
 

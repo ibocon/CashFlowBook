@@ -1,14 +1,13 @@
 package com.ibocon.ledger.security.oauth;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.ibocon.ledger.util.CookieUtils;
 import com.nimbusds.oauth2.sdk.util.StringUtils;
-
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /*
  * Stateless 서버를 만들기 위해 Session 대신 Cookie에 인증에 필요한 정보를 저장한다.

@@ -5,7 +5,7 @@ import com.ibocon.ledger.security.oauth.CookieOAuth2AuthorizationRequestReposito
 import com.ibocon.ledger.security.oauth.MyOAuth2UserService;
 import com.ibocon.ledger.security.oauth.OAuthFailureHandler;
 import com.ibocon.ledger.security.oauth.OAuthSuccessHandler;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,8 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
-
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Configuration

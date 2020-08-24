@@ -1,14 +1,10 @@
 package com.ibocon.ledger.security.oauth;
 
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.ibocon.ledger.security.oauth.userinfo.BaseOAuthUserInfo;
-import com.ibocon.ledger.security.oauth.userinfo.GoogleOAuthUserInfo;
 import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.repository.user.UserRepository;
-
+import com.ibocon.ledger.security.oauth.userinfo.BaseOAuthUserInfo;
+import com.ibocon.ledger.security.oauth.userinfo.GoogleOAuthUserInfo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -18,8 +14,9 @@ import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.var;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
 @Service
