@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth;
+package com.ibocon.ledger.security;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import java.lang.annotation.*;

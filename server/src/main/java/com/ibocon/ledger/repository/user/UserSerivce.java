@@ -1,12 +1,9 @@
 package com.ibocon.ledger.repository.user;
 
-import java.nio.file.attribute.UserPrincipal;
-
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,6 +1,6 @@
 package com.ibocon.ledger.web.controller;
 
-import com.ibocon.ledger.config.auth.CurrentUser;
+import com.ibocon.ledger.security.CurrentUser;
 import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.repository.user.UserSerivce;
 

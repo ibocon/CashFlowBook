@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth.jwt;
+package com.ibocon.ledger.security.jwt;
 
 import org.springframework.stereotype.Component;
 

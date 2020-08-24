@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config;
+package com.ibocon.ledger.configuration;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;

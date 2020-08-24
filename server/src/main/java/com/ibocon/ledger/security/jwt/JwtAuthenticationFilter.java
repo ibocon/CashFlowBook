@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth.jwt;
+package com.ibocon.ledger.security.jwt;
 
 import java.io.IOException;
 
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
 import lombok.extern.slf4j.Slf4j;

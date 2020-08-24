@@ -1,11 +1,11 @@
-package com.ibocon.ledger.config.auth.oauth;
+package com.ibocon.ledger.security.oauth;
 
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ibocon.ledger.config.auth.oauth.userinfo.BaseOAuthUserInfo;
-import com.ibocon.ledger.config.auth.oauth.userinfo.GoogleOAuthUserInfo;
+import com.ibocon.ledger.security.oauth.userinfo.BaseOAuthUserInfo;
+import com.ibocon.ledger.security.oauth.userinfo.GoogleOAuthUserInfo;
 import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.repository.user.UserRepository;
 

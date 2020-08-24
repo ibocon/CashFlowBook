@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth;
+package com.ibocon.ledger.security;
 
 import java.io.IOException;
 

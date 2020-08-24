@@ -1,10 +1,10 @@
-package com.ibocon.ledger.config.auth;
+package com.ibocon.ledger.security;
 
-import com.ibocon.ledger.config.auth.jwt.JwtAuthenticationFilter;
-import com.ibocon.ledger.config.auth.oauth.CookieOAuth2AuthorizationRequestRepository;
-import com.ibocon.ledger.config.auth.oauth.MyOAuth2UserService;
-import com.ibocon.ledger.config.auth.oauth.OAuthFailureHandler;
-import com.ibocon.ledger.config.auth.oauth.OAuthSuccessHandler;
+import com.ibocon.ledger.security.jwt.JwtAuthenticationFilter;
+import com.ibocon.ledger.security.oauth.CookieOAuth2AuthorizationRequestRepository;
+import com.ibocon.ledger.security.oauth.MyOAuth2UserService;
+import com.ibocon.ledger.security.oauth.OAuthFailureHandler;
+import com.ibocon.ledger.security.oauth.OAuthSuccessHandler;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

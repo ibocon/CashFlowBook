@@ -1,8 +1,8 @@
-package com.ibocon.ledger.config.auth.oauth.userinfo;
+package com.ibocon.ledger.security.oauth.userinfo;
 
 import java.util.Map;
 
-import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
+import com.ibocon.ledger.security.oauth.OAuth2Provider;
 
 public class GoogleOAuthUserInfo extends BaseOAuthUserInfo {
 

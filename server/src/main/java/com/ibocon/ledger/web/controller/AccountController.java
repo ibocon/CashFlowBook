@@ -2,7 +2,7 @@ package com.ibocon.ledger.web.controller;
 
 import java.util.List;
 
-import com.ibocon.ledger.config.auth.CurrentUser;
+import com.ibocon.ledger.security.CurrentUser;
 import com.ibocon.ledger.repository.account.UserDefinedAccount;
 import com.ibocon.ledger.repository.account.UserDefinedAccountRepository;
 import com.ibocon.ledger.repository.user.User;

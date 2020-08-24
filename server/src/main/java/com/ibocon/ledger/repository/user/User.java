@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ibocon.ledger.config.auth.oauth.OAuth2Provider;
+import com.ibocon.ledger.security.oauth.OAuth2Provider;
 import com.ibocon.ledger.repository.account.UserDefinedAccount;
 
 import org.springframework.security.core.GrantedAuthority;

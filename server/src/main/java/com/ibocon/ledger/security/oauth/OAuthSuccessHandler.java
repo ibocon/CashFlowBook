@@ -1,4 +1,4 @@
-package com.ibocon.ledger.config.auth.oauth;
+package com.ibocon.ledger.security.oauth;
 
 import java.io.IOException;
 import java.net.URI;
@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ibocon.ledger.config.auth.jwt.JwtTokenProvider;
+import com.ibocon.ledger.security.jwt.JwtTokenProvider;
 import com.ibocon.ledger.util.CookieUtils;
 
 import org.springframework.beans.factory.annotation.Value;
