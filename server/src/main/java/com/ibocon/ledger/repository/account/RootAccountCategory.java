@@ -10,20 +10,21 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @Entity
-@Table(uniqueConstraints = {
-    @UniqueConstraint(
-        name = "ACCOUNT_NAME_UNIQUE",
-        columnNames = {"ACCOUNT_NAME_ID"})})
-public class OfficialAccount {
+public class RootAccountCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private AccountCategory category;
+    @Enumerated(EnumType.STRING)
+    private final AccountingStandard standard;
 
     @ManyToOne
-    private TranslatedString accountName;
+    private final TranslatedString document;
+
+    private final boolean isDebit;
+
+    @ManyToOne
+    private final TranslatedString name;
 
 }

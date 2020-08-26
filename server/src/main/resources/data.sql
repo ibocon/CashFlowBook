@@ -1,6 +1,6 @@
 -- #region TranslatedString
 -- https://www.ifrs.org/issued-standards/ifrs-taxonomy/#annual-taxonomies
-INSERT INTO translated_string (korean) VALUES 
+INSERT INTO translated_string (korean) VALUES
 ('재무제표'),
     ('재무상태표'),
         ('자산'),
@@ -23,15 +23,28 @@ INSERT INTO translated_string (korean) VALUES
 ;
 -- #endregion
 
+-- #region RootAccountCategory
+INSERT INTO root_account_category (standard, document, is_debit, name) VALUES
+
+-- 재무상태표
+('K_IFRS', (SELECT id FROM translated_string WHERE korean = '재무상태표'), TRUE, (SELECT id FROM translated_string WHERE korean = '자산')),
+('K_IFRS', (SELECT id FROM translated_string WHERE korean = '재무상태표'), FALSE, (SELECT id FROM translated_string WHERE korean = '자본')),
+('K_IFRS', (SELECT id FROM translated_string WHERE korean = '재무상태표'), FALSE, (SELECT id FROM translated_string WHERE korean = '부채')),
+
+-- 손익계산서
+('K_IFRS', (SELECT id FROM translated_string WHERE korean = '손익계산서'), FALSE, (SELECT id FROM translated_string WHERE korean = '수익')),
+('K_IFRS', (SELECT id FROM translated_string WHERE korean = '손익계산서'), FALSE, (SELECT id FROM translated_string WHERE korean = '매출원가'))
+
+;
+
+-- #endregion
+
 -- #region AccountCategory
-INSERT INTO account_category (parent_id, child_id) VALUES
+INSERT INTO account_category (path, name) VALUES
 
-((SELECT id FROM translated_string WHERE korean = '재무제표'), (SELECT id FROM translated_string WHERE korean = '재무상태표')),
-    ((SELECT id FROM translated_string WHERE korean = '재무상태표'), (SELECT id FROM translated_string WHERE korean = '자산')),
-        ((SELECT id FROM translated_string WHERE korean = '자산'), (SELECT id FROM translated_string WHERE korean = '유동자산')),
-            ((SELECT id FROM translated_string WHERE korean = '유동자산'), (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산')),
-
-    ((SELECT id FROM translated_string WHERE korean = '재무상태표'), (SELECT id FROM translated_string WHERE korean = '자본')),
+-- TODO 2020.08.26 여기서부터 작업하자!
+((SELECT id FROM translated_string WHERE korean = '자산'), (SELECT id FROM translated_string WHERE korean = '유동자산')),
+    ((SELECT id FROM translated_string WHERE korean = '유동자산'), (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산')),
 
     ((SELECT id FROM translated_string WHERE korean = '재무상태표'), (SELECT id FROM translated_string WHERE korean = '부채')),
         ((SELECT id FROM translated_string WHERE korean = '부채'), (SELECT id FROM translated_string WHERE korean = '비유동부채')),

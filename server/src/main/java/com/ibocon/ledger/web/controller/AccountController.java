@@ -1,7 +1,7 @@
 package com.ibocon.ledger.web.controller;
 
-import com.ibocon.ledger.repository.account.UserDefinedAccount;
-import com.ibocon.ledger.repository.account.UserDefinedAccountRepository;
+import com.ibocon.ledger.repository.account.Account;
+import com.ibocon.ledger.repository.account.AccountRepository;
 import com.ibocon.ledger.repository.user.User;
 import com.ibocon.ledger.security.CurrentUser;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +18,11 @@ import java.util.List;
 @RequestMapping(path="/account", produces="application/json")
 public class AccountController {
     
-    private final UserDefinedAccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     @GetMapping
     public ResponseEntity<?> read(@CurrentUser User user) {
-        List<UserDefinedAccount> accounts = accountRepository.findByBelongTo(user);
+        List<Account> accounts = accountRepository.findByBelongTo(user);
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 

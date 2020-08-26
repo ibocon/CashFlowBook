@@ -16,9 +16,10 @@ public class AccountCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private TranslatedString parent;
+    @Convert(converter = LedgerPathConverter.class)
+    private LedgerPath path;
 
     @ManyToOne
-    private TranslatedString child;
+    private TranslatedString name;
+
 }

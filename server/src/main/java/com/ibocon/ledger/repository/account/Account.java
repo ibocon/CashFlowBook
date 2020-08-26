@@ -11,25 +11,24 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @Entity
-public class UserDefinedAccount {
+public class Account {
 
     @Id
     @GeneratedValue
     private Long id;
- 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private OfficialAccount officialLink;
+
+    @Convert(converter = LedgerPathConverter.class)
+    private final LedgerPath path;
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    final private User belongTo;
+    private final User belongTo;
 
     @Column(nullable = false)
-    private String accountName;
+    private final String name;
 
     @Builder
-    public UserDefinedAccount(User belongTo, OfficialAccount officialLink, String accountName) {
-        this.belongTo = belongTo; this.officialLink = officialLink; this.accountName = accountName;
+    public Account(User belongTo, LedgerPath path, String name) {
+        this.belongTo = belongTo; this.path = path; this.name = name;
     }
 }

@@ -1,7 +1,7 @@
 package com.ibocon.ledger.repository.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ibocon.ledger.repository.account.UserDefinedAccount;
+import com.ibocon.ledger.repository.account.Account;
 import com.ibocon.ledger.security.oauth.OAuth2Provider;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -64,7 +64,7 @@ public class User implements OAuth2User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "belongTo")
-    private List<UserDefinedAccount> userDefinedAccounts = new ArrayList<UserDefinedAccount>();
+    private List<Account> accounts = new ArrayList<Account>();
 
     @Builder
     public User(Role role, String email, OAuth2Provider provider, String name, String imageUrl) {
