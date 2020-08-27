@@ -126,6 +126,20 @@ WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역의 제�
 --
 INSERT INTO account_category (name_id) VALUES
 (
+    (SELECT id FROM translated_string WHERE korean = '용역매출액')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '수익')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역의 제공으로 인한 수익')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역매출액'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역매출액');
+--
+
+--
+INSERT INTO account_category (name_id) VALUES
+(
     (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가')
 );
 UPDATE account_category SET path =
@@ -134,6 +148,20 @@ CONCAT(
     '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가'))
 )
 WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가');
+--
+
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '용역매출원가')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '매출원가')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역매출원가'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역매출원가');
 --
 
 -- #endregion
