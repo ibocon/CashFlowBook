@@ -5,6 +5,8 @@ import lombok.Getter;
 
 import java.util.List;
 
+// {rootAccountCategoryId}/{AccountCategoryId}...#{AccountId}...
+
 @Getter
 public class LedgerPath {
 

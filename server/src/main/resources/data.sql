@@ -24,7 +24,7 @@ INSERT INTO translated_string (korean) VALUES
 -- #endregion
 
 -- #region RootAccountCategory
-INSERT INTO root_account_category (standard, document, is_debit, name) VALUES
+INSERT INTO root_account_category (standard, document_id, is_debit, name_id) VALUES
 
 -- 재무상태표
 ('K_IFRS', (SELECT id FROM translated_string WHERE korean = '재무상태표'), TRUE, (SELECT id FROM translated_string WHERE korean = '자산')),
@@ -40,46 +40,100 @@ INSERT INTO root_account_category (standard, document, is_debit, name) VALUES
 -- #endregion
 
 -- #region AccountCategory
-INSERT INTO account_category (path, name) VALUES
 
--- TODO 2020.08.26 여기서부터 작업하자!
-((SELECT id FROM translated_string WHERE korean = '자산'), (SELECT id FROM translated_string WHERE korean = '유동자산')),
-    ((SELECT id FROM translated_string WHERE korean = '유동자산'), (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산')),
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '유동자산')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '자산')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '유동자산'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '유동자산');
+--
 
-    ((SELECT id FROM translated_string WHERE korean = '재무상태표'), (SELECT id FROM translated_string WHERE korean = '부채')),
-        ((SELECT id FROM translated_string WHERE korean = '부채'), (SELECT id FROM translated_string WHERE korean = '비유동부채')),
-            ((SELECT id FROM translated_string WHERE korean = '비유동부채'), (SELECT id FROM translated_string WHERE korean = '장기매입채무 및 기타비유동채무')),
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '자산')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '유동자산')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산');
+--
 
-((SELECT id FROM translated_string WHERE korean = '재무제표'), (SELECT id FROM translated_string WHERE korean = '손익계산서')),
-    ((SELECT id FROM translated_string WHERE korean = '손익계산서'), (SELECT id FROM translated_string WHERE korean = '수익')),
-        ((SELECT id FROM translated_string WHERE korean = '수익'), (SELECT id FROM translated_string WHERE korean = '용역의 제공으로 인한 수익')),
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '현금')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '자산')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '유동자산')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '현금'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '현금');
+--
 
-    ((SELECT id FROM translated_string WHERE korean = '손익계산서'), (SELECT id FROM translated_string WHERE korean = '매출원가')),
-        ((SELECT id FROM translated_string WHERE korean = '매출원가'), (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가'))
-;
--- #endregion
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '비유동부채')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '부채')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '비유동부채'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '비유동부채');
+--
 
--- #region OfficialAccount
-INSERT INTO official_account (category_id, account_name_id) VALUES
-    (
-        (SELECT id FROM account_category WHERE child_id IN (SELECT id FROM translated_string WHERE korean = '현금 및 현금성 자산')), 
-        (SELECT id FROM translated_string WHERE korean = '현금')
-    ),
-    (
-        (SELECT id FROM account_category WHERE child_id IN (SELECT id FROM translated_string WHERE korean = '자본')), 
-        (SELECT id FROM translated_string WHERE korean = '자본금')
-    ),
-    (
-        (SELECT id FROM account_category WHERE child_id IN (SELECT id FROM translated_string WHERE korean = '장기매입채무 및 기타비유동채무')), 
-        (SELECT id FROM translated_string WHERE korean = '장기차입금')
-    ),
-    (
-        (SELECT id FROM account_category WHERE child_id IN (SELECT id FROM translated_string WHERE korean = '용역의 제공으로 인한 수익')), 
-        (SELECT id FROM translated_string WHERE korean = '용역매출액')
-    ),
-    (
-        (SELECT id FROM account_category WHERE child_id IN (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가')), 
-        (SELECT id FROM translated_string WHERE korean = '용역매출원가')
-    )
-;
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '장기매입채무 및 기타비유동채무')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '부채')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '비유동부채')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '장기매입채무 및 기타비유동채무'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '장기매입채무 및 기타비유동채무');
+--
+
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '용역의 제공으로 인한 수익')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '수익')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역의 제공으로 인한 수익'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용역의 제공으로 인한 수익');
+--
+
+--
+INSERT INTO account_category (name_id) VALUES
+(
+    (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가')
+);
+UPDATE account_category SET path =
+CONCAT(
+    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '매출원가')),
+    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가'))
+)
+WHERE name_id = (SELECT id FROM translated_string WHERE korean = '용억의 제공으로 인한 수익에 대한 매출원가');
+--
+
 -- #endregion
