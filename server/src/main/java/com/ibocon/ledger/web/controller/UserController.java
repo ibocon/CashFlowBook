@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 @RestController
-@RequestMapping(path="/user", produces="application/json")
+@RequestMapping(path="/user", produces="application/hal+json")
 public class UserController {
 
     private final UserSerivce userSerivce;
