@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -38,25 +39,25 @@ public class LedgerPath {
         var builder = LedgerPath.builder();
 
         var highPaths = highPattern.split(path);
-        if(highPaths.length < 1) {
+        if(highPaths.length < 0) {
             throw new LedgerPathException("'" + path + "'은 약속된 경로 규칙에 위배됩니다.");
         }
 
         // RootAccountCategory 경로 해석
-        if(highPaths.length > 1) {
+        if(highPaths.length > 0) {
             this.rootAccountCategoryId = getIdFromHighPath(highPaths[0]);
         }
 
         // AccountCategory 경로 해석
         List<Long> accountCategoryIds = new ArrayList<Long>();
-        if(highPaths.length > 2) {
+        if(highPaths.length > 1) {
             accountCategoryIds = getIdsFromHighPath(highPaths[1]);
         }
         this.accountCategoryIds = accountCategoryIds;
 
         // Account 경로 해석
         List<Long> accountIds = new ArrayList<Long>();
-        if(highPaths.length > 3) {
+        if(highPaths.length > 2) {
             accountIds = getIdsFromHighPath(highPaths[2]);
         }
         this.accountIds =accountIds;
@@ -76,7 +77,7 @@ public class LedgerPath {
 
             // account category 를 경로에 추가합니다.
             if(!accountCategoryIds.isEmpty()) {
-                appendHighPath(ledgerPath, accountCategoryIds);
+                appendLowPathsToHighPath(ledgerPath, accountCategoryIds);
             }
 
             // account 를 경로에 추가합니다.
@@ -84,7 +85,7 @@ public class LedgerPath {
                 if(accountCategoryIds.isEmpty()) {
                     throw new LedgerPathException("account category 없이 account 만 존재하는 경로는 없습니다.");
                 }
-                appendHighPath(ledgerPath, accountIds);
+                appendLowPathsToHighPath(ledgerPath, accountIds);
             }
 
             return ledgerPath.toString();
@@ -94,9 +95,9 @@ public class LedgerPath {
         }
     }
 
-    private void appendHighPath(StringBuilder builder, List<Long> lowPaths) {
+    private void appendLowPathsToHighPath(StringBuilder builder, List<Long> lowPaths) {
         builder.append(HIGH_SEPARATOR);
-        for(var id : accountIds) {
+        for(var id : lowPaths) {
             builder.append(LOW_SEPARATOR + id);
         }
     }
@@ -111,7 +112,7 @@ public class LedgerPath {
     }
 
     private List<Long> getIdsFromHighPath(String highPath) throws LedgerPathException {
-        var lowPaths = lowPattern.split(highPath);
+        var lowPaths = splitHighPathToLowPaths(highPath);
 
         var ids = new ArrayList<Long>();
         for(var lowPath : lowPaths) {
@@ -122,6 +123,7 @@ public class LedgerPath {
 
     private String[] splitHighPathToLowPaths(String highPath) throws LedgerPathException {
         var lowPaths = lowPattern.split(highPath);
+        lowPaths = Arrays.copyOfRange(lowPaths, 1, lowPaths.length);
 
         if(lowPaths.length < 1) {
             throw new LedgerPathException("'" + highPath + "'은 약속된 경로 형식에 맞지 않습니다.");
