@@ -37,8 +37,8 @@ public class RootAccountCategoryController {
     }
 
     private CollectionModel<RootAccountCategoryRepresentationModel> getRootAccountCategoryRepresentationModels(String documentString) {
-        TranslatedString documentTranslatedString = translatedStringRepository.findByKorean(documentString);
-        List<RootAccountCategory> rootAccountCategories = rootAccountCategoryRepository.findByDocument(documentTranslatedString);
+        var documentTranslatedString = translatedStringRepository.findByKorean(documentString);
+        var rootAccountCategories = rootAccountCategoryRepository.findByDocument(documentTranslatedString);
         return new RootAccountCategoryRepresentationModelAssembler().toCollectionModel(rootAccountCategories);
     }
 }
