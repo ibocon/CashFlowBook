@@ -10,6 +10,9 @@ import org.springframework.hateoas.server.core.Relation;
 public class RootAccountCategoryRepresentationModel extends RepresentationModel<RootAccountCategoryRepresentationModel> {
 
     @Getter
+    private String path;
+
+    @Getter
     private AccountingStandard standard;
 
     @Getter
@@ -22,6 +25,7 @@ public class RootAccountCategoryRepresentationModel extends RepresentationModel<
     private TranslatedStringRepresentationModel name;
 
     public RootAccountCategoryRepresentationModel(RootAccountCategory rootAccountCategory) {
+        this.path = "/" + rootAccountCategory.getId();
         this.standard = rootAccountCategory.getStandard();
         this.document = new TranslatedStringRepresentationModel(rootAccountCategory.getDocument());
         this.isDebit = rootAccountCategory.isDebit();
