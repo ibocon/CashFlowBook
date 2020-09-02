@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 
@@ -18,11 +19,16 @@ import java.util.regex.Pattern;
 public class LedgerPath {
 
     // /{rootAccountCategoryId}#/{AccountCategoryId}/{AccountCategoryId}...#/{AccountId}/{AccountId}...
+    private  static final String PATH_REGEX = "(\\/\\d)(#[\\/\\d]+)?(#[\\/\\d]+)?";
 
     private static final String HIGH_SEPARATOR = "#";
     private static final Pattern highPattern = Pattern.compile(HIGH_SEPARATOR);
     private static final String LOW_SEPARATOR = "/";
     private static final Pattern lowPattern = Pattern.compile(LOW_SEPARATOR);
+
+    public static Boolean isValidPath(String path) {
+        return path.matches(PATH_REGEX);
+    }
 
     private Long rootAccountCategoryId;
     private List<Long> accountCategoryIds;
@@ -39,28 +45,43 @@ public class LedgerPath {
         var builder = LedgerPath.builder();
 
         var highPaths = highPattern.split(path);
-        if(highPaths.length < 0) {
-            throw new LedgerPathException("'" + path + "'은 약속된 경로 규칙에 위배됩니다.");
-        }
 
         // RootAccountCategory 경로 해석
         if(highPaths.length > 0) {
             this.rootAccountCategoryId = getIdFromHighPath(highPaths[0]);
+        } else {
+            throw new LedgerPathException("'" + path + "'은 약속된 경로 규칙에 위배됩니다.");
         }
 
         // AccountCategory 경로 해석
-        List<Long> accountCategoryIds = new ArrayList<Long>();
+        List<Long> accountCategoryIds = new ArrayList<>();
         if(highPaths.length > 1) {
             accountCategoryIds = getIdsFromHighPath(highPaths[1]);
         }
         this.accountCategoryIds = accountCategoryIds;
 
         // Account 경로 해석
-        List<Long> accountIds = new ArrayList<Long>();
+        List<Long> accountIds = new ArrayList<>();
         if(highPaths.length > 2) {
             accountIds = getIdsFromHighPath(highPaths[2]);
         }
         this.accountIds =accountIds;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LedgerPath that = (LedgerPath) o;
+
+        return rootAccountCategoryId.equals(that.rootAccountCategoryId)
+                && accountCategoryIds.equals(that.accountCategoryIds)
+                && accountIds.equals(that.accountIds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rootAccountCategoryId, accountCategoryIds, accountIds);
     }
 
     @Override

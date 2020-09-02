@@ -54,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             )
             .authorizeRequests(authorize -> authorize
                 .antMatchers("/h2-console/**").permitAll() //H2 Console 접속에 필요
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
+                //.anyRequest().authenticated()
             )
             // https://docs.spring.io/spring-security/site/docs/5.4.0-M1/reference/html5/#oauth2login-advanced
             .oauth2Login(oauth2 -> oauth2

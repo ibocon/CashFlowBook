@@ -48,8 +48,8 @@ INSERT INTO account_category (name_id) VALUES
 );
 UPDATE account_category SET path =
 CONCAT(
-    (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '자산')),
-    '/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '유동자산'))
+    '/', (SELECT id FROM root_account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '자산')),
+    '#/', (SELECT id FROM account_category WHERE name_id = (SELECT id FROM translated_string WHERE korean = '유동자산'))
 )
 WHERE name_id = (SELECT id FROM translated_string WHERE korean = '유동자산');
 --

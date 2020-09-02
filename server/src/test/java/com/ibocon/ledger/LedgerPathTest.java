@@ -1,11 +1,12 @@
 package com.ibocon.ledger;
 
 import com.ibocon.ledger.repository.account.LedgerPath;
+import com.ibocon.ledger.repository.exception.LedgerPathException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LedgerPathTest {
 
@@ -31,7 +32,7 @@ public class LedgerPathTest {
     }
 
     @Test
-    public void ConvertLedgerPathToStringPath() throws Exception {
+    public void ConvertLedgerPathToStringPath() {
         var rootCategoryId = 1L;
 
         var accountCategoryIds = new ArrayList<Long>();
@@ -50,5 +51,31 @@ public class LedgerPathTest {
                 .build();
 
         assertEquals("/1#/2/3/4#/5/6", ledgerPath.toString());
+    }
+
+    @Test
+    public void ExceptionWhileConvert() {
+        assertThrows(LedgerPathException.class, () -> {
+            var ledgerPath = new LedgerPath("");
+        });
+
+        assertThrows(LedgerPathException.class, () -> {
+           var ledgerPath = new LedgerPath("/1/2/");
+        });
+    }
+
+    @Test
+    public void IsValidPath() {
+
+        assertTrue(LedgerPath.isValidPath("/1"));
+        assertTrue(LedgerPath.isValidPath("/1#/2"));
+        assertTrue(LedgerPath.isValidPath("/1#/2#/3"));
+        assertTrue(LedgerPath.isValidPath("/1#/2#//3"));
+
+        assertFalse(LedgerPath.isValidPath("/"));
+        assertFalse(LedgerPath.isValidPath("#"));
+        assertFalse(LedgerPath.isValidPath("/1#"));
+
+        assertFalse(LedgerPath.isValidPath("/1#/2#/3#/4"));
     }
 }
