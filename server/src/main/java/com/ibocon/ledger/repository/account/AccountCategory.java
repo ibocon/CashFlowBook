@@ -16,7 +16,6 @@ public class AccountCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Convert(converter = LedgerPathConverter.class)
     private LedgerPath path;
 
     @ManyToOne
