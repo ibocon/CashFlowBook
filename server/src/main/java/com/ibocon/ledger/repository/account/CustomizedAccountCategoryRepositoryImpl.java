@@ -15,10 +15,11 @@ public class CustomizedAccountCategoryRepositoryImpl implements CustomizedAccoun
     @Override
     public List<AccountCategory> findByPathStartingWith(LedgerPath path) {
 
+        path.setIsQuery(true);
         TypedQuery<AccountCategory> query =
                 entityManager.createQuery("SELECT ac FROM AccountCategory ac WHERE path LIKE :path",
                         AccountCategory.class);
-        query.setParameter("path", path.toString());
+        query.setParameter("path", path);
         List<AccountCategory> subAccountCategories = query.getResultList();
         return  subAccountCategories;
     }

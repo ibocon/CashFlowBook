@@ -28,6 +28,8 @@ public class LedgerPath {
         return path.matches(PATH_REGEX);
     }
 
+    private boolean isQuery;
+
     private Long rootAccountCategoryId;
     private List<Long> accountCategoryIds;
     private List<Long> accountIds;
@@ -64,6 +66,10 @@ public class LedgerPath {
             accountIds = getIdsFromHighPath(highPaths[2]);
         }
         this.accountIds =accountIds;
+    }
+
+    public void setIsQuery(boolean isQuery) {
+        this.isQuery = isQuery;
     }
 
     @Override
@@ -105,6 +111,10 @@ public class LedgerPath {
                     throw new LedgerPathException("account category 없이 account 만 존재하는 경로는 없습니다.");
                 }
                 appendLowPathsToHighPath(ledgerPath, accountIds);
+            }
+
+            if(isQuery) {
+                ledgerPath.append('%');
             }
 
             return ledgerPath.toString();
