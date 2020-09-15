@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-
-
 @Slf4j
 @Getter
 public class LedgerPath {

@@ -77,5 +77,7 @@ public class LedgerPathTest {
         assertFalse(LedgerPath.isValidPath("/1#"));
 
         assertFalse(LedgerPath.isValidPath("/1#/2#/3#/4"));
+
+        assertFalse(LedgerPath.isValidPath("/1%"));
     }
 }
