@@ -12,7 +12,7 @@ public class LedgerPathTest {
 
     @Test
     public void ConvertStringPathToLedgerPath() throws Exception {
-        var stringPath = "/1#/2/3/4#/5/6";
+        var stringPath = "/1@/2/3/4@/5/6";
         var ledgerPath = new LedgerPath(stringPath);
 
         assertEquals(1, ledgerPath.getRootAccountCategoryId());
@@ -50,7 +50,7 @@ public class LedgerPathTest {
                 .accountIds(accountIds)
                 .build();
 
-        assertEquals("/1#/2/3/4#/5/6", ledgerPath.toString());
+        assertEquals("/1@/2/3/4@/5/6", ledgerPath.toString());
     }
 
     @Test
@@ -68,15 +68,15 @@ public class LedgerPathTest {
     public void IsValidPath() {
 
         assertTrue(LedgerPath.isValidPath("/1"));
-        assertTrue(LedgerPath.isValidPath("/1#/2"));
-        assertTrue(LedgerPath.isValidPath("/1#/2#/3"));
-        assertTrue(LedgerPath.isValidPath("/1#/2#//3"));
+        assertTrue(LedgerPath.isValidPath("/1@/2"));
+        assertTrue(LedgerPath.isValidPath("/1@/2@/3"));
+        assertTrue(LedgerPath.isValidPath("/1@/2@//3"));
 
         assertFalse(LedgerPath.isValidPath("/"));
-        assertFalse(LedgerPath.isValidPath("#"));
-        assertFalse(LedgerPath.isValidPath("/1#"));
+        assertFalse(LedgerPath.isValidPath("@"));
+        assertFalse(LedgerPath.isValidPath("/1@"));
 
-        assertFalse(LedgerPath.isValidPath("/1#/2#/3#/4"));
+        assertFalse(LedgerPath.isValidPath("/1@/2@/3@/4"));
 
         assertFalse(LedgerPath.isValidPath("/1%"));
     }

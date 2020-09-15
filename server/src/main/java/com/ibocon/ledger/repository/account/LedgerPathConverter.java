@@ -19,13 +19,13 @@ public class LedgerPathConverter implements AttributeConverter<LedgerPath, Strin
 
     @Override
     public String convertToDatabaseColumn(LedgerPath attribute) {
-        return attribute.toString();
+        return attribute.toQuery();
     }
 
     @Override
     public LedgerPath convertToEntityAttribute(String dbData) {
         try {
-            log.debug("Convert : " + dbData);
+            dbData = dbData.replaceAll("%", "");
             return new LedgerPath(dbData);
         } catch(LedgerPathException exception) {
             log.error( "DB에 저장된 LedgerPath 를 객체로 전환하다 실패했습니다.", exception);

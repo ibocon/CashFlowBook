@@ -17,18 +17,15 @@ import java.util.regex.Pattern;
 public class LedgerPath {
 
     // /{rootAccountCategoryId}#/{AccountCategoryId}/{AccountCategoryId}...#/{AccountId}/{AccountId}...
-    private  static final String PATH_REGEX = "(\\/\\d)(#[\\/\\d]+)?(#[\\/\\d]+)?";
-
-    private static final String HIGH_SEPARATOR = "#";
-    private static final Pattern highPattern = Pattern.compile(HIGH_SEPARATOR);
+    private static final String HIGH_SEPARATOR = "@";
     private static final String LOW_SEPARATOR = "/";
+    private  static final String PATH_REGEX = "(" + LOW_SEPARATOR + "\\d)(" + HIGH_SEPARATOR + "[" + LOW_SEPARATOR + "\\d]+)?("+ HIGH_SEPARATOR +"["+ LOW_SEPARATOR + "\\d]+)?";
+    private static final Pattern highPattern = Pattern.compile(HIGH_SEPARATOR);
     private static final Pattern lowPattern = Pattern.compile(LOW_SEPARATOR);
 
     public static Boolean isValidPath(String path) {
         return path.matches(PATH_REGEX);
     }
-
-    private boolean isQuery;
 
     private Long rootAccountCategoryId;
     private List<Long> accountCategoryIds;
@@ -66,10 +63,6 @@ public class LedgerPath {
             accountIds = getIdsFromHighPath(highPaths[2]);
         }
         this.accountIds =accountIds;
-    }
-
-    public void setIsQuery(boolean isQuery) {
-        this.isQuery = isQuery;
     }
 
     @Override
@@ -113,15 +106,15 @@ public class LedgerPath {
                 appendLowPathsToHighPath(ledgerPath, accountIds);
             }
 
-            if(isQuery) {
-                ledgerPath.append('%');
-            }
-
             return ledgerPath.toString();
         } catch(LedgerPathException exception) {
             log.error("LedgerPath 를 String 으로 변환하지 못했습니다.", exception);
             return "";
         }
+    }
+
+    public String toQuery() {
+        return toString() + "%";
     }
 
     private void appendLowPathsToHighPath(StringBuilder builder, List<Long> lowPaths) {
