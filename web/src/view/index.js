@@ -1,8 +1,0 @@
-export { Account } from './Account'
-export { Home } from './Home'
-export { AccountList } from './AccountList'
-export { MySider } from './MySider'
-export { MyHeader } from './MyHeader'
-export { ProfileView } from './ProfileView'
-export { AccountModal } from './AccountModal'
-export { ErrorView } from './ErrorView'
